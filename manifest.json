@@ -1,0 +1,19 @@
+{
+  "name": "ZentraCart — Smart Shopping. Better Deals.",
+  "short_name": "ZentraCart",
+  "description": "ZentraCart — Smart Shopping. Better Deals. Online shopping for electronics, fashion, accessories and more.",
+  "start_url": "/zentracart/",
+  "scope": "/zentracart/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#111111",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
