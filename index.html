@@ -5,1025 +5,473 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111827">
 <meta name="description" content="ZentraCart — Smart Shopping. Better Deals.">
-<meta name="keywords" content="ZentraCart, online shopping, earbuds, smart watch, headphones, shoes, fashion, shopping">
 <link rel="manifest" href="./manifest.json">
 <link rel="icon" href="./icon.svg">
 <title>ZentraCart — Smart Shopping. Better Deals.</title>
 
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:#f5f7fb;color:#111827;font-family:Arial,Helvetica,sans-serif}
+html,body{margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;background:#f5f6f8;color:#111827}
 button,input{font:inherit}
 button{cursor:pointer}
-#root{min-height:100vh}
-
-.boot{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:24px;
-  background:linear-gradient(135deg,#111827,#2563eb);
-}
-.boot-card{
-  width:100%;
-  max-width:420px;
-  background:white;
-  border-radius:24px;
-  padding:32px 24px;
-  text-align:center;
-  box-shadow:0 20px 60px #0003;
-}
-.logo{
-  width:72px;height:72px;
-  border-radius:20px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#111827;
-  color:white;
-  font-size:35px;
-}
-.boot h1{margin:18px 0 6px}
-.boot p{color:#6b7280;margin:0}
-.spin{
-  width:30px;height:30px;
-  border:3px solid #e5e7eb;
-  border-top-color:#2563eb;
-  border-radius:50%;
-  animation:spin 1s linear infinite;
-  margin:22px auto 0;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-.app{min-height:100vh;padding-bottom:78px}
-.top{
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:#fff;
-  border-bottom:1px solid #e5e7eb;
-}
-.top-inner{
-  max-width:1100px;
-  margin:auto;
-  padding:12px 16px;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.brand-logo{
-  width:42px;height:42px;
-  border-radius:12px;
-  background:#111827;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:21px;
-}
-.brand strong{font-size:19px}
-.brand small{display:block;color:#6b7280;margin-top:2px}
-.search{
-  width:100%;
-  margin-top:12px;
-  border:1px solid #d1d5db;
-  border-radius:13px;
-  padding:12px 14px;
-  outline:none;
-  background:#f9fafb;
-}
-.search:focus{border-color:#2563eb;background:#fff}
-
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:16px;
-}
-.hero{
-  background:linear-gradient(135deg,#111827,#2563eb);
-  color:white;
-  border-radius:22px;
-  padding:25px 20px;
-  margin-bottom:18px;
-}
-.hero h1{margin:0 0 8px;font-size:27px}
-.hero p{margin:0 0 16px;opacity:.9}
-.hero button{
-  border:0;
-  background:white;
-  color:#111827;
-  padding:11px 17px;
-  border-radius:12px;
-  font-weight:700;
-}
-
-.section-title{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin:20px 0 12px;
-}
-.section-title h2{font-size:19px;margin:0}
-
-.categories{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-  padding-bottom:5px;
-}
-.cat{
-  min-width:90px;
-  border:1px solid #e5e7eb;
-  background:white;
-  border-radius:14px;
-  padding:12px 8px;
-  text-align:center;
-}
-.cat.active{
-  background:#111827;
-  color:white;
-}
-.cat-icon{font-size:24px;margin-bottom:5px}
-
-.products{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-}
-.card{
-  background:white;
-  border:1px solid #e5e7eb;
-  border-radius:17px;
-  overflow:hidden;
-}
-.pic{
-  height:170px;
-  background:#f3f4f6;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-.pic img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.noimg{font-size:42px}
-.card-body{padding:12px}
-.card h3{
-  font-size:15px;
-  margin:0 0 7px;
-  line-height:1.3;
-}
-.price{
-  font-size:18px;
-  font-weight:800;
-}
-.mrp{
-  color:#9ca3af;
-  text-decoration:line-through;
-  font-size:12px;
-  margin-left:5px;
-}
-.buy{
-  width:100%;
-  border:0;
-  background:#111827;
-  color:white;
-  border-radius:10px;
-  padding:10px;
-  margin-top:10px;
-  font-weight:700;
-}
-.wish{
-  float:right;
-  border:0;
-  background:transparent;
-  font-size:20px;
-}
-
-.empty{
-  background:white;
-  border:1px solid #e5e7eb;
-  border-radius:18px;
-  padding:30px 18px;
-  text-align:center;
-  color:#6b7280;
-}
-
-.bottom{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  z-index:30;
-  background:white;
-  border-top:1px solid #e5e7eb;
-}
-.nav{
-  max-width:600px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-}
-.nav button{
-  border:0;
-  background:white;
-  padding:10px 5px 8px;
-  color:#6b7280;
-  font-size:12px;
-}
-.nav button.active{
-  color:#2563eb;
-  font-weight:700;
-}
-.nav-icon{display:block;font-size:21px;margin-bottom:2px}
-
-.notice{
-  margin:12px 0;
-  padding:11px 13px;
-  border-radius:11px;
-  background:#fff7ed;
-  color:#9a3412;
-  font-size:13px;
-}
-
-.page-card{
-  background:white;
-  border:1px solid #e5e7eb;
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:14px;
-}
-.page-card h2{margin-top:0}
-.action{
-  width:100%;
-  padding:12px;
-  border:0;
-  border-radius:11px;
-  background:#111827;
-  color:white;
-  font-weight:700;
-  margin-top:10px;
-}
-
+.top{background:#111827;color:white;padding:12px 16px;position:sticky;top:0;z-index:50}
+.toprow{max-width:1200px;margin:auto;display:flex;align-items:center;gap:12px}
+.logo{font-size:21px;font-weight:800;white-space:nowrap}
+.logo small{display:block;font-size:10px;font-weight:500;color:#cbd5e1}
+.search{flex:1;display:flex;background:white;border-radius:8px;overflow:hidden}
+.search input{width:100%;border:0;outline:0;padding:11px 13px;color:#111827}
+.search button{border:0;background:#f59e0b;padding:0 15px}
+.navbtn{background:transparent;border:0;color:white;padding:8px;font-weight:700}
+.hero{max-width:1200px;margin:16px auto;padding:25px 20px;border-radius:16px;background:linear-gradient(135deg,#111827,#334155);color:white}
+.hero h1{margin:0 0 8px;font-size:30px}
+.hero p{margin:0 0 18px;color:#dbeafe}
+.hero button{border:0;border-radius:9px;padding:11px 17px;background:#f59e0b;font-weight:800}
+.wrap{max-width:1200px;margin:auto;padding:0 14px 90px}
+.section{margin-top:20px}
+.sectionhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.sectionhead h2{font-size:20px;margin:0}
+.categories{display:flex;gap:9px;overflow-x:auto;padding-bottom:4px}
+.cat{border:1px solid #e5e7eb;background:white;border-radius:10px;padding:10px 14px;white-space:nowrap}
+.cat.active{background:#111827;color:white}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:white;border-radius:13px;overflow:hidden;border:1px solid #e5e7eb;box-shadow:0 2px 8px #0000000a}
+.pic{height:180px;background:#eef2f7;display:flex;align-items:center;justify-content:center;position:relative}
+.pic img{width:100%;height:100%;object-fit:contain}
+.pic .emoji{font-size:60px}
+.wish{position:absolute;right:8px;top:8px;width:35px;height:35px;border-radius:50%;border:0;background:white;font-size:19px}
+.info{padding:12px}
+.name{font-weight:700;line-height:1.3;min-height:40px}
+.meta{font-size:12px;color:#64748b;margin-top:5px}
+.price{font-size:20px;font-weight:800;margin-top:8px}
+.mrp{text-decoration:line-through;color:#94a3b8;font-size:13px;margin-left:5px}
+.discount{color:#15803d;font-size:12px;margin-left:5px}
+.add{width:100%;margin-top:10px;border:0;border-radius:8px;background:#111827;color:white;padding:10px;font-weight:700}
+.empty{background:white;border:1px dashed #cbd5e1;border-radius:13px;padding:30px;text-align:center;color:#64748b}
+.bottom{position:fixed;left:0;right:0;bottom:0;height:64px;background:white;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;z-index:60}
+.bottom button{border:0;background:white;font-size:11px;color:#475569;min-width:70px}
+.bottom button b{display:block;font-size:21px}
+.badge{background:#ef4444;color:white;border-radius:20px;padding:2px 6px;font-size:10px;position:absolute;margin-left:-8px;margin-top:-3px}
+.page{background:#f5f6f8;min-height:calc(100vh - 64px)}
+.panel{background:white;border-radius:14px;padding:18px;margin-top:16px}
+.panel h2{margin-top:0}
+.action{width:100%;border:0;border-radius:9px;background:#111827;color:white;padding:12px;margin-top:10px;font-weight:700}
+.secondary{background:#e5e7eb;color:#111827}
+.cartrow{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #e5e7eb}
+.cartimg{width:75px;height:75px;background:#eef2f7;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:30px}
+.cartrow .grow{flex:1}
+.qty{display:flex;align-items:center;gap:8px;margin-top:8px}
+.qty button{width:30px;height:30px;border:1px solid #cbd5e1;background:white;border-radius:6px}
+.total{display:flex;justify-content:space-between;font-size:19px;font-weight:800;margin-top:15px}
+.notice{padding:12px;background:#fff7ed;border:1px solid #fed7aa;border-radius:9px;color:#9a3412;font-size:13px;margin-top:12px}
+footer{text-align:center;color:#64748b;font-size:12px;padding:25px}
 @media(min-width:700px){
-  .products{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .pic{height:210px}
+ .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .pic{height:220px}
 }
 </style>
 </head>
 
 <body>
 
-<div id="root">
-  <div class="boot">
-    <div class="boot-card">
-      <div class="logo">🛍️</div>
-      <h1>ZentraCart</h1>
-      <p>Smart Shopping. Better Deals.</p>
-      <div class="spin"></div>
-      <p style="margin-top:15px;font-size:13px">Opening marketplace…</p>
-    </div>
-  </div>
-</div>
+<div id="app"></div>
 
 <script>
-(function(){
+const SUPABASE_URL="https://vifxsulzansmxuyiakaz.supabase.co";
+const SUPABASE_KEY="sb_publishable_zxIYvmSfDLtP5APEw2pNdQ_bld_R_gE";
 
-"use strict";
+const state={
+ page:"home",
+ q:"",
+ category:"All",
+ products:[],
+ loading:true,
+ error:false,
+ cart:load("zc_cart",[]),
+ wish:load("zc_wish",[])
+};
 
-/* ================================
-   ZENTRACART CONFIG
-================================ */
+function load(k,d){
+ try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}
+}
+function save(k,v){
+ try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}
+}
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,m=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[m]));
+}
+function money(v){
+ const n=Number(v||0);
+ return "₹"+n.toLocaleString("en-IN");
+}
+function imgFor(p){
+ return p.image_url||p.image||p.thumbnail||"";
+}
+function categories(){
+ const a=["All"];
+ state.products.forEach(p=>{
+   if(p.category && !a.includes(p.category)) a.push(p.category);
+ });
+ return a;
+}
+function filtered(){
+ let a=state.products;
+ if(state.category!=="All")
+   a=a.filter(p=>String(p.category||"").toLowerCase()===state.category.toLowerCase());
 
-var SUPABASE_URL = "https://vifxsulzansmxuyiakaz.supabase.co";
+ const q=state.q.trim().toLowerCase();
+ if(q)
+   a=a.filter(p=>
+    String(p.name||"").toLowerCase().includes(q)||
+    String(p.category||"").toLowerCase().includes(q)||
+    String(p.brand||"").toLowerCase().includes(q)
+   );
+ return a;
+}
+function productCard(p){
+ const id=String(p.id);
+ const wished=state.wish.includes(id);
+ const image=imgFor(p);
+ const price=Number(p.price||0);
+ const mrp=Number(p.mrp||0);
+ const disc=p.discount_percent || (mrp>price&&price?Math.round((mrp-price)/mrp*100):0);
 
-var SUPABASE_KEY =
-"sb_publishable_zxIYvmSfDLtP5APEw2pNdQ_bld_R_gE";
-
-/* ================================
-   SAFE SCRIPT LOADER
-================================ */
-
-function loadScript(src, timeout){
-  return new Promise(function(resolve,reject){
-
-    var done=false;
-    var s=document.createElement("script");
-
-    function finish(error){
-      if(done)return;
-      done=true;
-      clearTimeout(timer);
-
-      if(error) reject(error);
-      else resolve();
-    }
-
-    s.src=src;
-    s.async=false;
-
-    s.onload=function(){
-      finish();
-    };
-
-    s.onerror=function(){
-      finish(new Error("Could not load "+src));
-    };
-
-    var timer=setTimeout(function(){
-      finish(new Error("Timeout loading "+src));
-    },timeout || 10000);
-
-    document.head.appendChild(s);
-  });
+ return `
+ <div class="card">
+   <div class="pic">
+     ${image
+       ? `<img src="${esc(image)}" alt="${esc(p.name)}" loading="lazy"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">`
+       : ""}
+     <span class="emoji" ${image?'style="display:none"':''}>🛍️</span>
+     <button class="wish" data-action="wish" data-id="${esc(id)}">${wished?"❤️":"♡"}</button>
+   </div>
+   <div class="info">
+     <div class="name">${esc(p.name||"Product")}</div>
+     <div class="meta">${esc(p.brand||p.category||"ZentraCart")}</div>
+     <div class="price">
+       ${money(price)}
+       ${mrp>price?`<span class="mrp">${money(mrp)}</span>`:""}
+       ${disc?`<span class="discount">${disc}% off</span>`:""}
+     </div>
+     <button class="add" data-action="cart" data-id="${esc(id)}">Add to Cart</button>
+   </div>
+ </div>`;
 }
 
-/* ================================
-   VANILLA FALLBACK
-   Website will NEVER stay stuck
-================================ */
+function home(){
+ const cats=categories();
+ const list=filtered();
 
-function showFallback(message){
+ return `
+ <header class="top">
+  <div class="toprow">
+   <div class="logo">ZentraCart<small>Smart Shopping. Better Deals.</small></div>
+   <div class="search">
+    <input id="search" value="${esc(state.q)}" placeholder="Search products...">
+    <button>🔍</button>
+   </div>
+   <button class="navbtn" data-page="cart">🛒<span class="badge">${state.cart.length}</span></button>
+  </div>
+ </header>
 
-  var root=document.getElementById("root");
+ <main class="wrap">
+  <section class="hero">
+   <h1>Welcome to ZentraCart</h1>
+   <p>Shop smart. Discover great products from sellers.</p>
+   <button data-action="shop">Shop Now</button>
+  </section>
 
-  root.innerHTML=
-  '<div class="app">'+
-    '<header class="top">'+
-      '<div class="top-inner">'+
-        '<div class="brand">'+
-          '<div class="brand-logo">🛍️</div>'+
-          '<div>'+
-            '<strong>ZentraCart</strong>'+
-            '<small>Smart Shopping. Better Deals.</small>'+
-          '</div>'+
-        '</div>'+
-        '<input class="search" placeholder="Search products..." disabled>'+
-      '</div>'+
-    '</header>'+
+  <section class="section">
+   <div class="sectionhead"><h2>Categories</h2></div>
+   <div class="categories">
+    ${cats.map(c=>`<button class="cat ${state.category===c?"active":""}"
+      data-category="${esc(c)}">${esc(c)}</button>`).join("")}
+   </div>
+  </section>
 
-    '<main class="container">'+
+  <section class="section">
+   <div class="sectionhead">
+    <h2>${state.q?"Search Results":"Latest Products"}</h2>
+    <span>${list.length} items</span>
+   </div>
 
-      '<section class="hero">'+
-        '<h1>Welcome to ZentraCart</h1>'+
-        '<p>Smart Shopping. Better Deals.</p>'+
-        '<button onclick="location.reload()">Refresh</button>'+
-      '</section>'+
+   ${state.loading
+     ? `<div class="empty">Loading products...</div>`
+     : state.error
+       ? `<div class="empty">
+           <div style="font-size:40px">🛍️</div>
+           <h3>Marketplace ready</h3>
+           <p>Products will appear here after they are approved in your ZentraCart database.</p>
+          </div>`
+       : list.length
+         ? `<div class="grid">${list.map(productCard).join("")}</div>`
+         : `<div class="empty">
+             <div style="font-size:40px">🛒</div>
+             <h3>No products available yet</h3>
+             <p>Add and approve products from the seller/admin system.</p>
+            </div>`
+   }
+  </section>
 
-      (message ?
-      '<div class="notice">'+message+'</div>' : '')+
+  <footer>ZentraCart © ${new Date().getFullYear()} · Smart Shopping. Better Deals.</footer>
+ </main>
 
-      '<div class="section-title">'+
-        '<h2>Shop by Category</h2>'+
-      '</div>'+
-
-      '<div class="categories">'+
-        '<div class="cat"><div class="cat-icon">🎧</div>Earbuds</div>'+
-        '<div class="cat"><div class="cat-icon">⌚</div>Smart Watch</div>'+
-        '<div class="cat"><div class="cat-icon">👟</div>Shoes</div>'+
-        '<div class="cat"><div class="cat-icon">👕</div>Fashion</div>'+
-        '<div class="cat"><div class="cat-icon">📱</div>Mobile</div>'+
-      '</div>'+
-
-      '<div class="section-title">'+
-        '<h2>Products</h2>'+
-      '</div>'+
-
-      '<div class="empty">'+
-        '<div style="font-size:42px">🛒</div>'+
-        '<h3>ZentraCart Marketplace</h3>'+
-        '<p>Products will appear here after sellers add products and they are approved by the marketplace.</p>'+
-      '</div>'+
-
-    '</main>'+
-  '</div>'+
-
-  '<nav class="bottom">'+
-    '<div class="nav">'+
-      '<button class="active"><span class="nav-icon">⌂</span>Home</button>'+
-      '<button><span class="nav-icon">▦</span>Categories</button>'+
-      '<button><span class="nav-icon">🛒</span>Cart</button>'+
-      '<button><span class="nav-icon">👤</span>Account</button>'+
-    '</div>'+
-  '</nav>';
-
+ ${bottom()}
+ `;
 }
 
-/* ================================
-   LOAD APP
-================================ */
+function cartPage(){
+ return `
+ <header class="top">
+  <div class="toprow">
+   <button class="navbtn" data-page="home">←</button>
+   <div class="logo">My Cart</div>
+  </div>
+ </header>
+ <main class="wrap">
+  <div class="panel">
+   <h2>Shopping Cart</h2>
+   ${state.cart.length
+     ? state.cart.map((x,i)=>`
+       <div class="cartrow">
+        <div class="cartimg">${x.image?`<img src="${esc(x.image)}" style="max-width:100%;max-height:100%">`:"🛍️"}</div>
+        <div class="grow">
+         <b>${esc(x.name)}</b>
+         <div>${money(x.price)}</div>
+         <div class="qty">
+          <button data-action="minus" data-id="${esc(x.id)}">−</button>
+          <b>${x.qty}</b>
+          <button data-action="plus" data-id="${esc(x.id)}">+</button>
+          <button data-action="remove" data-id="${esc(x.id)}">Remove</button>
+         </div>
+        </div>
+       </div>
+      `).join("")
+     : `<div class="empty">Your cart is empty.</div>`
+   }
 
-async function boot(){
-
-  try{
-
-    /*
-      React first.
-      If CDN fails, fallback screen appears
-      instead of infinite loading.
-    */
-
-    await loadScript(
-      "https://unpkg.com/react@18/umd/react.production.min.js",
-      10000
-    );
-
-    await loadScript(
-      "https://unpkg.com/react-dom@18/umd/react-dom.production.min.js",
-      10000
-    );
-
-    await loadScript(
-      "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2",
-      10000
-    );
-
-    if(!window.React || !window.ReactDOM){
-      throw new Error("React failed to initialize.");
-    }
-
-    if(!window.supabase){
-      throw new Error("Supabase failed to initialize.");
-    }
-
-    start();
-
-  }catch(error){
-
-    console.error("ZentraCart boot error:",error);
-
-    showFallback(
-      "Marketplace services are taking longer than expected. The website is open, but live products could not be loaded right now."
-    );
-
-  }
-
+   ${state.cart.length?`
+    <div class="total">
+      <span>Total</span>
+      <span>${money(state.cart.reduce((s,x)=>s+(Number(x.price)||0)*x.qty,0))}</span>
+    </div>
+    <div class="notice">
+      Checkout/payment gateway is not being faked here. Real COD/UPI/online payment
+      needs the secure backend/payment configuration.
+    </div>
+    <button class="action" data-action="checkout">Proceed to Checkout</button>
+   `:""}
+  </div>
+ </main>
+ ${bottom()}
+ `;
 }
 
-/* ================================
-   REACT APP
-================================ */
-
-function start(){
-
-  var React=window.React;
-  var ReactDOM=window.ReactDOM;
-  var h=React.createElement;
-
-  var useState=React.useState;
-  var useEffect=React.useEffect;
-
-  var sb=window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
-
-  function App(){
-
-    var state=useState("home");
-    var tab=state[0];
-    var setTab=state[1];
-
-    var ps=useState([]);
-    var products=ps[0];
-    var setProducts=ps[1];
-
-    var ls=useState(true);
-    var loading=ls[0];
-    var setLoading=ls[1];
-
-    var qs=useState("");
-    var q=qs[0];
-    var setQ=qs[1];
-
-    var cs=useState("All");
-    var cat=cs[0];
-    var setCat=cs[1];
-
-    var ss=useState(null);
-    var session=ss[0];
-    var setSession=ss[1];
-
-    var ms=useState("");
-    var msg=ms[0];
-    var setMsg=ms[1];
-
-    var cartState=useState([]);
-    var cart=cartState[0];
-    var setCart=cartState[1];
-
-    var wishState=useState([]);
-    var wish=wishState[0];
-    var setWish=wishState[1];
-
-    useEffect(function(){
-
-      var mounted=true;
-
-      sb.auth.getSession()
-        .then(function(result){
-
-          if(!mounted)return;
-
-          if(result && result.data){
-            setSession(result.data.session || null);
-          }
-
-        })
-        .catch(function(error){
-          console.log("Session:",error);
-        });
-
-      var listener=sb.auth.onAuthStateChange(
-        function(event,newSession){
-
-          if(mounted){
-            setSession(newSession || null);
-          }
-
-        }
-      );
-
-      return function(){
-
-        mounted=false;
-
-        if(
-          listener &&
-          listener.data &&
-          listener.data.subscription
-        ){
-          listener.data.subscription.unsubscribe();
-        }
-
-      };
-
-    },[]);
-
-    useEffect(function(){
-      loadProducts();
-    },[]);
-
-    async function loadProducts(){
-
-      setLoading(true);
-
-      try{
-
-        var queryPromise=
-          sb
-          .from("products")
-          .select(
-            "id,name,description,price,mrp,discount_percent,category,image_url,stock,status,brand,category_id,seller_id"
-          )
-          .eq("status","approved")
-          .order("created_at",{ascending:false});
-
-        var timeoutPromise=new Promise(function(_,reject){
-
-          setTimeout(function(){
-            reject(new Error("Supabase request timed out."));
-          },8000);
-
-        });
-
-        var result=await Promise.race([
-          queryPromise,
-          timeoutPromise
-        ]);
-
-        if(result.error){
-          throw result.error;
-        }
-
-        setProducts(result.data || []);
-        setMsg("");
-
-      }catch(error){
-
-        console.error("Products:",error);
-
-        setProducts([]);
-
-        setMsg(
-          "Live products are not available yet. Sellers can add products after the marketplace backend is configured."
-        );
-
-      }finally{
-
-        setLoading(false);
-
-      }
-
-    }
-
-    function addCart(product){
-
-      setCart(function(old){
-
-        var exists=old.find(function(x){
-          return x.id===product.id;
-        });
-
-        if(exists){
-
-          return old.map(function(x){
-
-            if(x.id===product.id){
-              return Object.assign({},x,{
-                qty:(x.qty || 1)+1
-              });
-            }
-
-            return x;
-
-          });
-
-        }
-
-        return old.concat([
-          Object.assign({},product,{qty:1})
-        ]);
-
-      });
-
-      setMsg("Product added to cart.");
-
-    }
-
-    function toggleWish(product){
-
-      setWish(function(old){
-
-        var exists=old.some(function(x){
-          return x.id===product.id;
-        });
-
-        if(exists){
-
-          return old.filter(function(x){
-            return x.id!==product.id;
-          });
-
-        }
-
-        return old.concat([product]);
-
-      });
-
-    }
-
-    function categories(){
-
-      var list=[
-        ["All","🛍️"],
-        ["Electronics","📱"],
-        ["Fashion","👕"],
-        ["Shoes","👟"],
-        ["Watches","⌚"],
-        ["Home","🏠"],
-        ["Toys","🧸"],
-        ["Books","📚"]
-      ];
-
-      return h(
-        "div",
-        {className:"categories"},
-
-        list.map(function(item){
-
-          return h(
-            "button",
-            {
-              key:item[0],
-              className:"cat "+(cat===item[0]?"active":""),
-              onClick:function(){
-                setCat(item[0]);
-                setTab("home");
-              }
-            },
-
-            h("div",{className:"cat-icon"},item[1]),
-            h("div",null,item[0])
-
-          );
-
-        })
-
-      );
-
-    }
-
-    function productCard(p){
-
-      var wished=wish.some(function(x){
-        return x.id===p.id;
-      });
-
-      return h(
-        "div",
-        {className:"card",key:p.id},
-
-        h(
-          "div",
-          {className:"pic"},
-
-          p.image_url ?
-
-          h("img",{
-            src:p.image_url,
-            alt:p.name,
-            loading:"lazy",
-            onError:function(e){
-              e.currentTarget.style.display="none";
-            }
-          })
-
-          :
-
-          h("div",{className:"noimg"},"🛍️")
-
-        ),
-
-        h(
-          "div",
-          {className:"card-body"},
-
-          h(
-            "button",
-            {
-              className:"wish",
-              title:"Wishlist",
-              onClick:function(){
-                toggleWish(p);
-              }
-            },
-            wished ? "❤️" : "♡"
-          ),
-
-          h("h3",null,p.name || "Product"),
-
-          p.brand ?
-          h(
-            "div",
-            {
-              style:{
-                color:"#6b7280",
-                fontSize:"12px",
-                marginBottom:"6px"
-              }
-            },
-            p.brand
-          )
-          : null,
-
-          p.price!=null ?
-
-          h(
-            "div",
-            {className:"price"},
-
-            "₹"+Number(p.price).toLocaleString("en-IN"),
-
-            p.mrp && Number(p.mrp)>Number(p.price) ?
-
-            h(
-              "span",
-              {className:"mrp"},
-              "₹"+Number(p.mrp).toLocaleString("en-IN")
-            )
-
-            : null
-
-          )
-
-          : null,
-
-          h(
-            "button",
-            {
-              className:"buy",
-              onClick:function(){
-                addCart(p);
-              }
-            },
-            "Add to Cart"
-          )
-
-        )
-
-      );
-
-    }
-
-    function Home(){
-
-      var filtered=products.filter(function(p){
-
-        var categoryOk=
-          cat==="All" ||
-          !p.category ||
-          String(p.category).toLowerCase()===cat.toLowerCase();
-
-        var searchOk=
-          !q ||
-          String(p.name||"").toLowerCase().includes(q.toLowerCase()) ||
-          String(p.brand||"").toLowerCase().includes(q.toLowerCase());
-
-        return categoryOk && searchOk;
-
-      });
-
-      return h(
-        "main",
-        {className:"container"},
-
-        h(
-          "section",
-          {className:"hero"},
-
-          h("h1",null,"Smart Shopping. Better Deals."),
-
-          h(
-            "p",
-            null,
-            "Discover products from sellers on ZentraCart."
-          ),
-
-          h(
-            "button",
-            {
-              onClick:function(){
-                document.getElementById("products")?.scrollIntoView({
-                  behavior:"smooth"
-                });
-              }
-            },
-            "Shop Now"
-          )
-
-        ),
-
-        msg ?
-        h("div",{className:"notice"},msg)
-        : null,
-
-        h(
-          "div",
-          {className:"section-title"},
-          h("h2",null,"Shop by Category")
-        ),
-
-        categories(),
-
-        h(
-          "div",
-          {
-            className:"section-title",
-            id:"products"
-          },
-          h(
-            "h2",
-            null,
-            loading ? "Loading Products…" : "Products"
-          )
-        ),
-
-        loading ?
-
-        h(
-          "div",
-          {className:"empty"},
-          h("div",{className:"spin"}),
-          h("p",null,"Loading approved products…")
-        )
-
-        :
-
-        filtered.length ?
-
-        h(
-          "div",
-          {className:"products"},
-          filtered.map(productCard)
-        )
-
-        :
-
-        h(
-          "div",
-          {className:"empty"},
-
-          h(
-            "div",
-            {style:{fontSize:"45px"}},
-            "🛒"
-          ),
-
-          h("h3",null,"No products available yet"),
-
-          h(
-            "p",
-            null,
-            q ?
-            "No product matched your search."
-            :
-            "Products will appear here after sellers add products and admin approves them."
-          )
-
-        )
-
-      );
-
-    }
-
-    function Categories(){
-
-      return h(
-        "main",
-        {className:"container"},
-
-        h(
-          "div",
-          {className:"page-card"},
-
-          h("h2",null,"Categories"),
-
-          h(
-            "p",
-            null,
-            "Choose a category to explore products."
-          ),
-
-          categories()
-
-        )
-
-      );
-
-    }
-
-    function Cart(){
-
-      var total=cart.reduce(function(sum,item){
-
-        return sum+
-          (Number(item.price)||0)*
-          (Number(item.qty)||1);
-
-      },0);
-
-      return h(
-        "main",
-        {className:"container"},
-
-        h(
-          "div",
-          {className:"section-title"},
-          h("h2",null,"Your Cart")
-        ),
-
-        cart.length ?
-
-        h(
-          "div",
-          null,
-
-          cart.map(function(item){
-
-            return h(
-              "div",
-              {
-                className:"page-card",
-                key:item.id
-              },
-
-              h(
-                "div",
-                {
-                  style:{
-                    display:"flex",
-                    gap:"12px",
-                    alignItems:"center"
-                  }
-                },
-
-                h(
-                  "div",
-                  {
-                    style:{
-                      width:"70px",
-                      height:"70px",
-                      background:"#f3f4f6",
-                      borderRadius:"12px",
-                      overflow:"hidden",
-                      display:"flex",
-                      alignItems:"center",
-                      justi
+function accountPage(){
+ return `
+ <header class="top">
+  <div class="toprow"><div class="logo">ZentraCart</div></div>
+ </header>
+ <main class="wrap">
+  <div class="panel">
+   <h2>Account</h2>
+   <p>Customer account, seller account and admin roles are designed to run through secure Supabase authentication.</p>
+   <button class="action" data-action="login">Sign In / Create Account</button>
+   <button class="action secondary" data-action="seller">Become a Seller</button>
+   <button class="action secondary" data-action="orders">My Orders</button>
+  </div>
+  <div class="panel">
+   <h2>Marketplace</h2>
+   <p>Customers can browse products, search, add items to cart and save products.</p>
+   <p><b>Seller:</b> products should be submitted for approval before appearing publicly.</p>
+   <p><b>Admin:</b> admin credentials must remain server-side and never be placed in this HTML.</p>
+  </div>
+ </main>
+ ${bottom()}
+ `;
+}
+
+function wishPage(){
+ const list=state.products.filter(p=>state.wish.includes(String(p.id)));
+ return `
+ <header class="top">
+  <div class="toprow">
+   <button class="navbtn" data-page="home">←</button>
+   <div class="logo">Wishlist</div>
+  </div>
+ </header>
+ <main class="wrap">
+  <section class="section">
+   ${list.length?`<div class="grid">${list.map(productCard).join("")}</div>`
+   :`<div class="empty"><div style="font-size:40px">❤️</div><h3>No saved products</h3></div>`}
+  </section>
+ </main>
+ ${bottom()}
+ `;
+}
+
+function bottom(){
+ return `
+ <nav class="bottom">
+  <button data-page="home"><b>⌂</b>Home</button>
+  <button data-page="wish"><b>♡</b>Wishlist</button>
+  <button data-page="cart"><b>🛒</b>Cart</button>
+  <button data-page="account"><b>👤</b>Account</button>
+ </nav>`;
+}
+
+function render(){
+ const root=document.getElementById("app");
+ const wasSearch=document.activeElement && document.activeElement.id==="search";
+ root.innerHTML=
+   state.page==="cart"?cartPage():
+   state.page==="account"?accountPage():
+   state.page==="wish"?wishPage():home();
+
+ if(wasSearch){
+   const s=document.getElementById("search");
+   if(s){s.focus();s.setSelectionRange(s.value.length,s.value.length);}
+ }
+}
+
+function addCart(id){
+ const p=state.products.find(x=>String(x.id)===String(id));
+ if(!p)return;
+
+ const found=state.cart.find(x=>String(x.id)===String(id));
+ if(found)found.qty++;
+ else state.cart.push({
+   id:String(p.id),
+   name:p.name||"Product",
+   price:Number(p.price||0),
+   image:imgFor(p),
+   qty:1
+ });
+ save("zc_cart",state.cart);
+ render();
+}
+
+function changeQty(id,n){
+ const x=state.cart.find(a=>String(a.id)===String(id));
+ if(!x)return;
+ x.qty+=n;
+ if(x.qty<=0)state.cart=state.cart.filter(a=>String(a.id)!==String(id));
+ save("zc_cart",state.cart);
+ render();
+}
+
+function toggleWish(id){
+ id=String(id);
+ if(state.wish.includes(id))
+   state.wish=state.wish.filter(x=>x!==id);
+ else state.wish.push(id);
+ save("zc_wish",state.wish);
+ render();
+}
+
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-action],[data-page],[data-category]");
+ if(!b)return;
+
+ if(b.dataset.page){
+   state.page=b.dataset.page;
+   render();
+   window.scrollTo(0,0);
+   return;
+ }
+
+ if(b.dataset.category){
+   state.category=b.dataset.category;
+   state.page="home";
+   render();
+   return;
+ }
+
+ const a=b.dataset.action;
+ const id=b.dataset.id;
+
+ if(a==="cart")addCart(id);
+ if(a==="wish")toggleWish(id);
+ if(a==="plus")changeQty(id,1);
+ if(a==="minus")changeQty(id,-1);
+ if(a==="remove"){
+   state.cart=state.cart.filter(x=>String(x.id)!==String(id));
+   save("zc_cart",state.cart);
+   render();
+ }
+ if(a==="shop"){
+   window.scrollTo({top:400,behavior:"smooth"});
+ }
+ if(a==="checkout"){
+   alert("Checkout backend/payment gateway will be connected securely after the order and payment tables are configured.");
+ }
+ if(a==="login"){
+   alert("Customer authentication will use Supabase Auth.");
+ }
+ if(a==="seller"){
+   alert("Seller onboarding will use a separate seller account and admin approval workflow.");
+ }
+ if(a==="orders"){
+   alert("Your orders will appear here after the order system is connected.");
+ }
+});
+
+document.addEventListener("input",e=>{
+ if(e.target.id==="search"){
+   state.q=e.target.value;
+   state.page="home";
+   render();
+ }
+});
+
+async function loadProducts(){
+ render();
+
+ try{
+   const params=new URLSearchParams({
+     select:"id,name,description,price,mrp,discount_percent,category,image_url,stock,status,brand,seller_id,created_at",
+     status:"eq.approved",
+     order:"created_at.desc"
+   });
+
+   const controller=new AbortController();
+   const timer=setTimeout(()=>controller.abort(),7000);
+
+   const res=await fetch(
+     SUPABASE_URL+"/rest/v1/products?"+params.toString(),
+     {
+       method:"GET",
+       headers:{
+         "apikey":SUPABASE_KEY,
+         "Authorization":"Bearer "+SUPABASE_KEY
+       },
+       signal:controller.signal
+     }
+   );
+
+   clearTimeout(timer);
+
+   if(!res.ok)throw new Error("Products API error "+res.status);
+
+   const data=await res.json();
+   state.products=Array.isArray(data)?data:[];
+   state.loading=false;
+   state.error=false;
+ }catch(err){
+   console.log(err);
+   state.loading=false;
+   state.error=true;
+   state.products=[];
+ }
+
+ render();
+}
+
+render();
+loadProducts();
+</script>
+
+</body>
+</html>
