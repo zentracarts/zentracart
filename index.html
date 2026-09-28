@@ -3,52 +3,1027 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#6d28d9">
+<meta name="theme-color" content="#111827">
 <meta name="description" content="ZentraCart — Smart Shopping. Better Deals.">
-<link rel="manifest" href="./manifest.webmanifest">
+<meta name="keywords" content="ZentraCart, online shopping, earbuds, smart watch, headphones, shoes, fashion, shopping">
+<link rel="manifest" href="./manifest.json">
 <link rel="icon" href="./icon.svg">
 <title>ZentraCart — Smart Shopping. Better Deals.</title>
+
 <style>
-*{box-sizing:border-box}html,body,#root{margin:0;min-height:100%;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#17121f;background:#f7f7fb}body{padding-bottom:78px}button,input{font:inherit}button{cursor:pointer}:root{--p:#6d28d9;--muted:#6b6673;--line:#ebe8ef}.app{max-width:720px;margin:auto;min-height:100vh}.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);padding:12px 14px;border-bottom:1px solid var(--line)}.toprow{display:flex;align-items:center;justify-content:space-between}.logo{font-size:22px;font-weight:900}.logo span{color:var(--p)}.iconbtn{width:42px;height:42px;border:0;border-radius:13px;background:#f1edff;color:var(--p);font-size:20px}.search{margin-top:10px;display:flex;align-items:center;gap:7px;background:#f4f3f6;border:1px solid #e7e3ec;border-radius:15px;padding:0 10px}.search input{width:100%;border:0;outline:0;background:transparent;padding:13px 3px;font-size:16px}.search button{border:0;background:none;font-size:20px}.hero{margin:14px;border-radius:22px;padding:22px;background:linear-gradient(135deg,#5b21b6,#8b5cf6 60%,#c026d3);color:#fff}.hero h1{margin:0;font-size:28px;line-height:1.05}.hero p{opacity:.9;margin:9px 0 16px}.deal{background:#fff;color:#4c1d95;border:0;border-radius:12px;padding:10px 14px;font-weight:800}.section{padding:4px 14px 12px}.sectionhead{display:flex;align-items:center;justify-content:space-between;margin:10px 0}.muted{color:var(--muted);font-size:13px}.cats{display:flex;gap:12px;overflow:auto;padding:4px 0 12px}.cat{min-width:72px;border:0;background:transparent;text-align:center}.catpic{width:58px;height:58px;border-radius:18px;background:#fff;display:grid;place-items:center;font-size:27px;box-shadow:0 2px 10px #0000000d;margin:auto}.cat span{display:block;font-size:12px;margin-top:5px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.card{background:#fff;border:1px solid #eeeaf2;border-radius:17px;overflow:hidden}.pic{height:175px;background:#f1eff5;position:relative}.pic img{width:100%;height:100%;object-fit:cover}.heart{position:absolute;right:8px;top:8px;width:35px;height:35px;border:0;border-radius:50%;background:#fff;color:#e11d48;font-size:18px}.cpad{padding:10px}.title{font-size:14px;font-weight:750;line-height:1.3;min-height:37px}.price{font-size:18px;font-weight:900;margin-top:6px}.mrp{text-decoration:line-through;color:#999;font-size:12px;margin-left:5px}.stock{font-size:11px;color:#15803d;margin-top:3px}.add{width:100%;margin-top:8px;border:0;border-radius:11px;background:var(--p);color:white;padding:10px;font-weight:800}.add:disabled{opacity:.45}.empty{padding:28px;text-align:center;background:#fff;border-radius:16px;border:1px dashed #d8d2e0;color:var(--muted)}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(720px,100%);height:68px;background:#fff;border-top:1px solid #ddd8e4;display:grid;grid-template-columns:repeat(4,1fr);z-index:30}.nav{border:0;background:#fff;color:#6d6874;font-size:11px}.nav b{display:block;font-size:22px;line-height:25px}.nav.active{color:var(--p);font-weight:800}.account{padding:18px 14px}.profile{background:#fff;border-radius:20px;padding:18px;display:flex;gap:13px;align-items:center}.avatar{width:58px;height:58px;border-radius:50%;background:#ede9fe;color:var(--p);display:grid;place-items:center;font-size:25px;font-weight:900}.profile h2{margin:0 0 4px;font-size:18px}.settings{background:#fff;border-radius:18px;margin-top:14px;overflow:hidden}.settitle{font-size:19px;font-weight:900;padding:18px 16px 9px}.row{width:100%;display:flex;align-items:center;gap:12px;padding:15px 16px;border:0;border-top:1px solid #f0edf3;background:#fff;text-align:left}.row .ico{width:35px;height:35px;border-radius:12px;background:#f3efff;color:var(--p);display:grid;place-items:center}.row .txt{flex:1}.row strong{display:block;font-size:15px}.row small{color:var(--muted);display:block;margin-top:2px}.chev{color:#999;font-size:20px}.modalbg{position:fixed;inset:0;background:#0007;z-index:100;display:grid;place-items:end}.modal{width:min(720px,100%);background:#fff;border-radius:24px 24px 0 0;padding:20px;max-height:90vh;overflow:auto}.close{float:right;border:0;background:#f1eff4;border-radius:50%;width:36px;height:36px}.form{clear:both;padding-top:12px}.field{width:100%;padding:13px;border:1px solid #ddd7e4;border-radius:12px;margin:7px 0;outline:0}.primary{width:100%;border:0;background:var(--p);color:white;padding:13px;border-radius:12px;font-weight:800;margin-top:7px}.tabs{display:flex;gap:8px}.tabs button{flex:1;border:0;padding:10px;border-radius:10px;background:#f3f1f5}.tabs .on{background:#ede9fe;color:var(--p);font-weight:800}.notice{padding:11px;border-radius:11px;background:#fef3c7;color:#92400e;font-size:13px;margin:9px 0}@media(min-width:700px){body{background:#e9e7ee}.app{box-shadow:0 0 35px #0001}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#f5f7fb;color:#111827;font-family:Arial,Helvetica,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+#root{min-height:100vh}
+
+.boot{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:linear-gradient(135deg,#111827,#2563eb);
+}
+.boot-card{
+  width:100%;
+  max-width:420px;
+  background:white;
+  border-radius:24px;
+  padding:32px 24px;
+  text-align:center;
+  box-shadow:0 20px 60px #0003;
+}
+.logo{
+  width:72px;height:72px;
+  border-radius:20px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#111827;
+  color:white;
+  font-size:35px;
+}
+.boot h1{margin:18px 0 6px}
+.boot p{color:#6b7280;margin:0}
+.spin{
+  width:30px;height:30px;
+  border:3px solid #e5e7eb;
+  border-top-color:#2563eb;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+  margin:22px auto 0;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.app{min-height:100vh;padding-bottom:78px}
+.top{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:#fff;
+  border-bottom:1px solid #e5e7eb;
+}
+.top-inner{
+  max-width:1100px;
+  margin:auto;
+  padding:12px 16px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.brand-logo{
+  width:42px;height:42px;
+  border-radius:12px;
+  background:#111827;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:21px;
+}
+.brand strong{font-size:19px}
+.brand small{display:block;color:#6b7280;margin-top:2px}
+.search{
+  width:100%;
+  margin-top:12px;
+  border:1px solid #d1d5db;
+  border-radius:13px;
+  padding:12px 14px;
+  outline:none;
+  background:#f9fafb;
+}
+.search:focus{border-color:#2563eb;background:#fff}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:16px;
+}
+.hero{
+  background:linear-gradient(135deg,#111827,#2563eb);
+  color:white;
+  border-radius:22px;
+  padding:25px 20px;
+  margin-bottom:18px;
+}
+.hero h1{margin:0 0 8px;font-size:27px}
+.hero p{margin:0 0 16px;opacity:.9}
+.hero button{
+  border:0;
+  background:white;
+  color:#111827;
+  padding:11px 17px;
+  border-radius:12px;
+  font-weight:700;
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:20px 0 12px;
+}
+.section-title h2{font-size:19px;margin:0}
+
+.categories{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding-bottom:5px;
+}
+.cat{
+  min-width:90px;
+  border:1px solid #e5e7eb;
+  background:white;
+  border-radius:14px;
+  padding:12px 8px;
+  text-align:center;
+}
+.cat.active{
+  background:#111827;
+  color:white;
+}
+.cat-icon{font-size:24px;margin-bottom:5px}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.card{
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:17px;
+  overflow:hidden;
+}
+.pic{
+  height:170px;
+  background:#f3f4f6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.pic img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.noimg{font-size:42px}
+.card-body{padding:12px}
+.card h3{
+  font-size:15px;
+  margin:0 0 7px;
+  line-height:1.3;
+}
+.price{
+  font-size:18px;
+  font-weight:800;
+}
+.mrp{
+  color:#9ca3af;
+  text-decoration:line-through;
+  font-size:12px;
+  margin-left:5px;
+}
+.buy{
+  width:100%;
+  border:0;
+  background:#111827;
+  color:white;
+  border-radius:10px;
+  padding:10px;
+  margin-top:10px;
+  font-weight:700;
+}
+.wish{
+  float:right;
+  border:0;
+  background:transparent;
+  font-size:20px;
+}
+
+.empty{
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  padding:30px 18px;
+  text-align:center;
+  color:#6b7280;
+}
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:30;
+  background:white;
+  border-top:1px solid #e5e7eb;
+}
+.nav{
+  max-width:600px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+.nav button{
+  border:0;
+  background:white;
+  padding:10px 5px 8px;
+  color:#6b7280;
+  font-size:12px;
+}
+.nav button.active{
+  color:#2563eb;
+  font-weight:700;
+}
+.nav-icon{display:block;font-size:21px;margin-bottom:2px}
+
+.notice{
+  margin:12px 0;
+  padding:11px 13px;
+  border-radius:11px;
+  background:#fff7ed;
+  color:#9a3412;
+  font-size:13px;
+}
+
+.page-card{
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:14px;
+}
+.page-card h2{margin-top:0}
+.action{
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:11px;
+  background:#111827;
+  color:white;
+  font-weight:700;
+  margin-top:10px;
+}
+
+@media(min-width:700px){
+  .products{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .pic{height:210px}
+}
 </style>
 </head>
+
 <body>
-<div id="root"><div style="max-width:720px;margin:40px auto;padding:22px;text-align:center;font-family:system-ui"><div style="background:#fff;border-radius:20px;padding:24px">🛍️<h2>ZentraCart</h2><p style="color:#6b6673">Loading secure marketplace…</p></div></div></div>
+
+<div id="root">
+  <div class="boot">
+    <div class="boot-card">
+      <div class="logo">🛍️</div>
+      <h1>ZentraCart</h1>
+      <p>Smart Shopping. Better Deals.</p>
+      <div class="spin"></div>
+      <p style="margin-top:15px;font-size:13px">Opening marketplace…</p>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
+
 "use strict";
-var U="https://vifxsulzansmxuyiakaz.supabase.co",K="sb_publishable_zxIYvmSfDLtP5APEw2pNdQ_bld_R_gE",root=document.getElementById("root");
-function error(t,d){root.innerHTML='<div style="max-width:720px;margin:40px auto;padding:20px;font-family:system-ui"><div style="background:#fff;border-radius:20px;padding:24px"><div style="font-size:34px">⚠️</div><h2>'+t+'</h2><p style="color:#666">'+d+'</p><button onclick="location.reload()" style="border:0;border-radius:12px;background:#6d28d9;color:#fff;padding:12px 18px;font-weight:700">Reload</button></div></div>'}
-function load(src,cb){var s=document.createElement("script");s.src=src;s.onload=function(){cb(1)};s.onerror=function(){cb(0)};document.head.appendChild(s)}
-load("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2",function(a){if(!a)return error("ZentraCart could not start","Supabase could not load. Check internet and reload.");load("https://unpkg.com/react@18/umd/react.production.min.js",function(b){if(!b)return error("ZentraCart could not start","React could not load. Reload the page.");load("https://unpkg.com/react-dom@18/umd/react-dom.production.min.js",function(c){if(!c)return error("ZentraCart could not start","React DOM could not load. Reload the page.");start()})})});
+
+/* ================================
+   ZENTRACART CONFIG
+================================ */
+
+var SUPABASE_URL = "https://vifxsulzansmxuyiakaz.supabase.co";
+
+var SUPABASE_KEY =
+"sb_publishable_zxIYvmSfDLtP5APEw2pNdQ_bld_R_gE";
+
+/* ================================
+   SAFE SCRIPT LOADER
+================================ */
+
+function loadScript(src, timeout){
+  return new Promise(function(resolve,reject){
+
+    var done=false;
+    var s=document.createElement("script");
+
+    function finish(error){
+      if(done)return;
+      done=true;
+      clearTimeout(timer);
+
+      if(error) reject(error);
+      else resolve();
+    }
+
+    s.src=src;
+    s.async=false;
+
+    s.onload=function(){
+      finish();
+    };
+
+    s.onerror=function(){
+      finish(new Error("Could not load "+src));
+    };
+
+    var timer=setTimeout(function(){
+      finish(new Error("Timeout loading "+src));
+    },timeout || 10000);
+
+    document.head.appendChild(s);
+  });
+}
+
+/* ================================
+   VANILLA FALLBACK
+   Website will NEVER stay stuck
+================================ */
+
+function showFallback(message){
+
+  var root=document.getElementById("root");
+
+  root.innerHTML=
+  '<div class="app">'+
+    '<header class="top">'+
+      '<div class="top-inner">'+
+        '<div class="brand">'+
+          '<div class="brand-logo">🛍️</div>'+
+          '<div>'+
+            '<strong>ZentraCart</strong>'+
+            '<small>Smart Shopping. Better Deals.</small>'+
+          '</div>'+
+        '</div>'+
+        '<input class="search" placeholder="Search products..." disabled>'+
+      '</div>'+
+    '</header>'+
+
+    '<main class="container">'+
+
+      '<section class="hero">'+
+        '<h1>Welcome to ZentraCart</h1>'+
+        '<p>Smart Shopping. Better Deals.</p>'+
+        '<button onclick="location.reload()">Refresh</button>'+
+      '</section>'+
+
+      (message ?
+      '<div class="notice">'+message+'</div>' : '')+
+
+      '<div class="section-title">'+
+        '<h2>Shop by Category</h2>'+
+      '</div>'+
+
+      '<div class="categories">'+
+        '<div class="cat"><div class="cat-icon">🎧</div>Earbuds</div>'+
+        '<div class="cat"><div class="cat-icon">⌚</div>Smart Watch</div>'+
+        '<div class="cat"><div class="cat-icon">👟</div>Shoes</div>'+
+        '<div class="cat"><div class="cat-icon">👕</div>Fashion</div>'+
+        '<div class="cat"><div class="cat-icon">📱</div>Mobile</div>'+
+      '</div>'+
+
+      '<div class="section-title">'+
+        '<h2>Products</h2>'+
+      '</div>'+
+
+      '<div class="empty">'+
+        '<div style="font-size:42px">🛒</div>'+
+        '<h3>ZentraCart Marketplace</h3>'+
+        '<p>Products will appear here after sellers add products and they are approved by the marketplace.</p>'+
+      '</div>'+
+
+    '</main>'+
+  '</div>'+
+
+  '<nav class="bottom">'+
+    '<div class="nav">'+
+      '<button class="active"><span class="nav-icon">⌂</span>Home</button>'+
+      '<button><span class="nav-icon">▦</span>Categories</button>'+
+      '<button><span class="nav-icon">🛒</span>Cart</button>'+
+      '<button><span class="nav-icon">👤</span>Account</button>'+
+    '</div>'+
+  '</nav>';
+
+}
+
+/* ================================
+   LOAD APP
+================================ */
+
+async function boot(){
+
+  try{
+
+    /*
+      React first.
+      If CDN fails, fallback screen appears
+      instead of infinite loading.
+    */
+
+    await loadScript(
+      "https://unpkg.com/react@18/umd/react.production.min.js",
+      10000
+    );
+
+    await loadScript(
+      "https://unpkg.com/react-dom@18/umd/react-dom.production.min.js",
+      10000
+    );
+
+    await loadScript(
+      "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2",
+      10000
+    );
+
+    if(!window.React || !window.ReactDOM){
+      throw new Error("React failed to initialize.");
+    }
+
+    if(!window.supabase){
+      throw new Error("Supabase failed to initialize.");
+    }
+
+    start();
+
+  }catch(error){
+
+    console.error("ZentraCart boot error:",error);
+
+    showFallback(
+      "Marketplace services are taking longer than expected. The website is open, but live products could not be loaded right now."
+    );
+
+  }
+
+}
+
+/* ================================
+   REACT APP
+================================ */
+
 function start(){
-try{
-var R=React,D=ReactDOM,h=R.createElement,useEffect=R.useEffect,useMemo=R.useMemo,useState=R.useState,sb=supabase.createClient(U,K);
-var C=[["All","✨"],["Electronics","💻"],["Mobiles","📱"],["Fashion","👕"],["Beauty","💄"],["Home","🏠"],["Appliances","⚡"],["Grocery","🛒"],["Sports","⚽"],["Books","📚"],["Toys","🧸"],["Shoes","👟"]];
-function App(){
-var s1=useState(null),session=s1[0],setSession=s1[1],s2=useState("home"),tab=s2[0],setTab=s2[1],s3=useState([]),products=s3[0],setProducts=s3[1],s4=useState(true),loading=s4[0],setLoading=s4[1],s5=useState(""),q=s5[0],setQ=s5[1],s6=useState("All"),cat=s6[0],setCat=s6[1],s7=useState(false),auth=s7[0],setAuth=s7[1],s8=useState([]),cart=s8[0],setCart=s8[1],s9=useState([]),wish=s9[0],setWish=s9[1],s10=useState(null),profile=s10[0],setProfile=s10[1],s11=useState(""),msg=s11[0],setMsg=s11[1];
-useEffect(function(){sb.auth.getSession().then(function(x){setSession(x.data.session)});var x=sb.auth.onAuthStateChange(function(e,z){setSession(z)});return function(){x.data.subscription.unsubscribe()}},[]);
-useEffect(function(){productsLoad()},[]);useEffect(function(){if(session){profileLoad();cartLoad();wishLoad()}else{setCart([]);setWish([]);setProfile(null)}},[session]);
-async function productsLoad(){setLoading(true);var x=await sb.from("products").select("id,name,description,price,mrp,discount_percent,category,image_url,stock,status,brand,category_id,seller_id").eq("status","approved").order("created_at",{ascending:false});if(x.error)setMsg("Products could not be loaded yet.");setProducts(x.data||[]);setLoading(false)}
-async function profileLoad(){var x=await sb.from("profiles").select("id,full_name,email,phone,avatar_url,role").eq("id",session.user.id).maybeSingle();setProfile(x.data)}
-async function cartLoad(){var x=await sb.from("carts").select("id").eq("user_id",session.user.id).limit(1).maybeSingle();if(!x.data)return setCart([]);var y=await sb.from("cart_items").select("id,quantity,product_id").eq("cart_id",x.data.id);if(!y.data)return setCart([]);var ids=y.data.map(function(i){return i.product_id});if(!ids.length)return setCart([]);var p=await sb.from("products").select("id,name,price,image_url,stock").in("id",ids);setCart(y.data.map(function(i){return Object.assign({},i,{product:(p.data||[]).find(function(z){return z.id===i.product_id})})}).filter(function(i){return i.product}))}
-async function wishLoad(){var x=await sb.from("wishlists").select("product_id").eq("user_id",session.user.id);setWish((x.data||[]).map(function(i){return i.product_id}))}
-async function add(p){if(!session)return setAuth(true);var x=await sb.from("carts").select("id").eq("user_id",session.user.id).limit(1).maybeSingle(),cid=x.data&&x.data.id;if(!cid){cid=Date.now();var z=await sb.from("carts").insert({id:cid,user_id:session.user.id});if(z.error)return setMsg(z.error.message)}var old=cart.find(function(i){return i.product_id===p.id}),r=old?await sb.from("cart_items").update({quantity:old.quantity+1}).eq("id",old.id):await sb.from("cart_items").insert({id:Date.now(),cart_id:cid,product_id:p.id,quantity:1});if(r.error)setMsg(r.error.message);else{setMsg("Added to cart");cartLoad()}}
-async function fav(p){if(!session)return setAuth(true);if(wish.includes(p.id)){await sb.from("wishlists").delete().eq("user_id",session.user.id).eq("product_id",p.id);setWish(wish.filter(function(i){return i!==p.id}))}else{var x=await sb.from("wishlists").insert({id:Date.now(),user_id:session.user.id,product_id:p.id});if(!x.error)setWish(wish.concat([p.id]))}}
-var list=useMemo(function(){return products.filter(function(p){return(cat==="All"||String(p.category||"").toLowerCase().indexOf(cat.toLowerCase())>=0)&&String(p.name||"").toLowerCase().indexOf(q.toLowerCase())>=0})},[products,q,cat]);
-return h("div",{className:"app"},h("header",{className:"top"},h("div",{className:"toprow"},h("div",{className:"logo"},"🛍️ ",h("span",null,"ZentraCart")),h("button",{className:"iconbtn",onClick:function(){session?setTab("account"):setAuth(true)}},session?"👤":"🔐")),h("div",{className:"search"},h("span",null,"⌕"),h("input",{value:q,onChange:function(e){setQ(e.target.value)},placeholder:"Search products, brands and more"}),h("button",{onClick:function(){setMsg("Voice search will be connected in the search module.")}},"🎙️"),h("button",{onClick:function(){setMsg("Image search will be connected in the search module.")}},"▣"))),
-tab==="home"&&h(Home,{list:list,loading:loading,cat:cat,setCat:setCat,add:add,fav:fav,wish:wish}),tab==="categories"&&h(Categories,{setCat:setCat,setTab:setTab}),tab==="cart"&&h(Cart,{cart:cart,load:cartLoad}),tab==="account"&&h(Account,{session:session,profile:profile,setAuth:setAuth,setTab:setTab}),h("nav",{className:"bottom"},[["home","⌂","Home"],["categories","▦","Categories"],["account","♙","Account"],["cart","🛒","Cart"]].map(function(x){return h("button",{className:"nav "+(tab===x[0]?"active":""),key:x[0],onClick:function(){if((x[0]==="account"||x[0]==="cart")&&!session)return setAuth(true);setTab(x[0])}},h("b",null,x[1]),x[2]+(x[0]==="cart"&&cart.length?" "+cart.reduce(function(a,i){return a+i.quantity},0):""))})),auth&&h(Auth,{close:function(){setAuth(false)}}),msg&&h("div",{style:{position:"fixed",left:"50%",bottom:"80px",transform:"translateX(-50%)",background:"#17121f",color:"#fff",padding:"11px 15px",borderRadius:"12px",zIndex:120,maxWidth:"90%"}},msg,h("button",{style:{marginLeft:8,border:0,background:"transparent",color:"#fff"},onClick:function(){setMsg("")}},"×")))
-}
-function Home(p){return h("main",null,h("section",{className:"hero"},h("h1",null,"Smart Shopping. Better Deals."),h("p",null,"Discover real products from sellers on ZentraCart."),h("button",{className:"deal",onClick:function(){document.querySelector(".grid")?.scrollIntoView({behavior:"smooth"})}},"Explore Deals →")),h("section",{className:"section"},h("div",{className:"cats"},C.map(function(x){return h("button",{className:"cat",key:x[0],onClick:function(){p.setCat(x[0])}},h("div",{className:"catpic"},x[1]),h("span",null,x[0]))})),h("div",{className:"sectionhead"},h("h2",null,p.cat==="All"?"Products":p.cat),h("span",{className:"muted"},p.list.length+" products")),p.loading?h("div",{className:"empty"},"Loading real products…"):p.list.length?h("div",{className:"grid"},p.list.map(function(x){return h("article",{className:"card",key:x.id},h("div",{className:"pic"},x.image_url?h("img",{src:x.image_url,alt:x.name,loading:"lazy"}):h("div",{style:{display:"grid",placeItems:"center",height:"100%",fontSize:35}},"🛍️"),h("button",{className:"heart",onClick:function(){p.fav(x)}},p.wish.includes(x.id)?"♥":"♡")),h("div",{className:"cpad"},h("div",{className:"title"},x.name),h("div",{className:"price"},"₹",Number(x.price||0).toLocaleString("en-IN"),x.mrp&&Number(x.mrp)>Number(x.price)?h("span",{className:"mrp"},"₹",Number(x.mrp).toLocaleString("en-IN")):null),h("div",{className:"stock"},Number(x.stock||0)>0?"In stock":"Currently unavailable"),h("button",{className:"add",disabled:Number(x.stock||0)<=0,onClick:function(){p.add(x)}},"Add to cart")))})):h("div",{className:"empty"},"No approved products are available yet. Real seller/admin products will appear here.")))}
-function Categories(p){return h("main",{className:"section"},h("h1",null,"Categories"),h("p",{className:"muted"},"Browse ZentraCart marketplace categories."),h("div",{className:"grid"},C.slice(1).map(function(x){return h("button",{key:x[0],onClick:function(){p.setCat(x[0]);p.setTab("home")},style:{background:"#fff",border:"1px solid #eee",borderRadius:18,padding:20}},h("div",{style:{fontSize:38}},x[1]),h("b",null,x[0]))}))}
-function Cart(p){var total=p.cart.reduce(function(s,x){return s+Number(x.product?.price||0)*x.quantity},0);return h("main",{className:"section"},h("h1",null,"Your Cart"),p.cart.length?h("div",{className:"settings"},p.cart.map(function(x){return h("div",{className:"row",key:x.id},h("div",{className:"txt"},h("strong",null,x.product?.name),h("small",null,"₹",Number(x.product?.price||0).toLocaleString("en-IN")," • Qty ",x.quantity)),h("button",{onClick:async function(){await sb.from("cart_items").delete().eq("id",x.id);p.load()}}, "Remove")})),h("h3",null,"Total: ₹",total.toLocaleString("en-IN")),h("button",{className:"primary",onClick:function(){alert("Checkout is not being faked. Real order/payment integration is the next production module.")}},"Proceed to checkout")):h("div",{className:"empty"},"Your cart is empty. Add a real product to continue."))}
-function Account(p){if(!p.session)return h("main",{className:"account"},h("div",{className:"empty"},"Sign in to access your account.",h("button",{className:"primary",onClick:function(){p.setAuth(true)}},"Sign in / Create account")));return h("main",{className:"account"},h("div",{className:"profile"},h("div",{className:"avatar"},(p.profile?.full_name||p.session.user.email||"U")[0].toUpperCase()),h("div",null,h("h2",null,p.profile?.full_name||"ZentraCart User"),h("div",{className:"muted"},p.profile?.email||p.session.user.email),h("small",{className:"muted"},p.profile?.role==="admin"?"Owner / Admin":"Buyer"))),h("div",{className:"settings"},h("div",{className:"settitle"},"Profile & Account"),Row("👤","Edit profile","Personal details",function(){}),Row("📍","Saved addresses","Delivery addresses",function(){}),Row("🔔","Notifications","Order notifications",function(){}),Row("💳","Payments & Wallets","Payment methods",function(){}),Row("🔒","Privacy & Security","Privacy Centre and devices",function(){}),Row("💰","Earn with ZentraCart","Affiliate / Sell on ZentraCart",function(){}),Row("❓","Help & Policies","FAQs, terms and policies",function(){}),Row("📸","Follow us","Instagram and YouTube",function(){window.open("https://www.instagram.com/zentracart/","_blank")}),h("button",{className:"row",style:{color:"#dc2626",fontWeight:800},onClick:async function(){await sb.auth.signOut();p.setTab("home")}},h("div",{className:"ico"},"↪"),h("div",{className:"txt"},"Logout"))))}
-function Row(i,t,s,f){return h("button",{className:"row",onClick:f},h("div",{className:"ico"},i),h("div",{className:"txt"},h("strong",null,t),h("small",null,s)),h("div",{className:"chev"},"›"))}
-function Auth(p){var a=useState("email"),mode=a[0],setMode=a[1],b=useState(""),email=b[0],setEmail=b[1],c=useState(""),phone=c[0],setPhone=c[1],d=useState(false),sent=d[0],setSent=d[1],e=useState(""),err=e[0],setErr=e[1];async function send(){setErr("");var r=mode==="email"?await sb.auth.signInWithOtp({email:email,options:{emailRedirectTo:location.origin+location.pathname}}):await sb.auth.signInWithOtp({phone:phone});if(r.error)setErr(r.error.message);else setSent(true)}return h("div",{className:"modalbg"},h("div",{className:"modal"},h("button",{className:"close",onClick:p.close},"×"),h("div",{className:"form"},h("h2",null,"Welcome to ZentraCart"),h("p",{className:"muted"},"Real account sign-in. No demo credentials."),h("div",{className:"tabs"},h("button",{className:mode==="email"?"on":"",onClick:function(){setMode("email")}},"Email OTP"),h("button",{className:mode==="phone"?"on":"",onClick:function(){setMode("phone")}},"Mobile OTP")),mode==="email"?h("input",{className:"field",type:"email",placeholder:"Enter email",value:email,onChange:function(x){setEmail(x.target.value)}}):h("input",{className:"field",type:"tel",placeholder:"+91 mobile number",value:phone,onChange:function(x){setPhone(x.target.value)}}),sent&&h("div",{className:"notice"},"Verification sent. Check your ",mode==="email"?"email":"SMS","."),err&&h("div",{className:"notice"},err),h("button",{className:"primary",onClick:send},sent?"Send again":"Continue"),mode==="phone"&&h("p",{className:"muted"},"Mobile OTP requires an SMS provider in Supabase.")))}
-try{D.createRoot(root).render(h(App))}catch(e){console.error(e);error("ZentraCart encountered an error","The app stopped while loading. Reload the page.")}
-}catch(e){console.error(e);error("ZentraCart could not start","A required app component failed. Reload the page.")}
-}
-})();
-</script>
-</body>
-</html>
+
+  var React=window.React;
+  var ReactDOM=window.ReactDOM;
+  var h=React.createElement;
+
+  var useState=React.useState;
+  var useEffect=React.useEffect;
+
+  var sb=window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  function App(){
+
+    var state=useState("home");
+    var tab=state[0];
+    var setTab=state[1];
+
+    var ps=useState([]);
+    var products=ps[0];
+    var setProducts=ps[1];
+
+    var ls=useState(true);
+    var loading=ls[0];
+    var setLoading=ls[1];
+
+    var qs=useState("");
+    var q=qs[0];
+    var setQ=qs[1];
+
+    var cs=useState("All");
+    var cat=cs[0];
+    var setCat=cs[1];
+
+    var ss=useState(null);
+    var session=ss[0];
+    var setSession=ss[1];
+
+    var ms=useState("");
+    var msg=ms[0];
+    var setMsg=ms[1];
+
+    var cartState=useState([]);
+    var cart=cartState[0];
+    var setCart=cartState[1];
+
+    var wishState=useState([]);
+    var wish=wishState[0];
+    var setWish=wishState[1];
+
+    useEffect(function(){
+
+      var mounted=true;
+
+      sb.auth.getSession()
+        .then(function(result){
+
+          if(!mounted)return;
+
+          if(result && result.data){
+            setSession(result.data.session || null);
+          }
+
+        })
+        .catch(function(error){
+          console.log("Session:",error);
+        });
+
+      var listener=sb.auth.onAuthStateChange(
+        function(event,newSession){
+
+          if(mounted){
+            setSession(newSession || null);
+          }
+
+        }
+      );
+
+      return function(){
+
+        mounted=false;
+
+        if(
+          listener &&
+          listener.data &&
+          listener.data.subscription
+        ){
+          listener.data.subscription.unsubscribe();
+        }
+
+      };
+
+    },[]);
+
+    useEffect(function(){
+      loadProducts();
+    },[]);
+
+    async function loadProducts(){
+
+      setLoading(true);
+
+      try{
+
+        var queryPromise=
+          sb
+          .from("products")
+          .select(
+            "id,name,description,price,mrp,discount_percent,category,image_url,stock,status,brand,category_id,seller_id"
+          )
+          .eq("status","approved")
+          .order("created_at",{ascending:false});
+
+        var timeoutPromise=new Promise(function(_,reject){
+
+          setTimeout(function(){
+            reject(new Error("Supabase request timed out."));
+          },8000);
+
+        });
+
+        var result=await Promise.race([
+          queryPromise,
+          timeoutPromise
+        ]);
+
+        if(result.error){
+          throw result.error;
+        }
+
+        setProducts(result.data || []);
+        setMsg("");
+
+      }catch(error){
+
+        console.error("Products:",error);
+
+        setProducts([]);
+
+        setMsg(
+          "Live products are not available yet. Sellers can add products after the marketplace backend is configured."
+        );
+
+      }finally{
+
+        setLoading(false);
+
+      }
+
+    }
+
+    function addCart(product){
+
+      setCart(function(old){
+
+        var exists=old.find(function(x){
+          return x.id===product.id;
+        });
+
+        if(exists){
+
+          return old.map(function(x){
+
+            if(x.id===product.id){
+              return Object.assign({},x,{
+                qty:(x.qty || 1)+1
+              });
+            }
+
+            return x;
+
+          });
+
+        }
+
+        return old.concat([
+          Object.assign({},product,{qty:1})
+        ]);
+
+      });
+
+      setMsg("Product added to cart.");
+
+    }
+
+    function toggleWish(product){
+
+      setWish(function(old){
+
+        var exists=old.some(function(x){
+          return x.id===product.id;
+        });
+
+        if(exists){
+
+          return old.filter(function(x){
+            return x.id!==product.id;
+          });
+
+        }
+
+        return old.concat([product]);
+
+      });
+
+    }
+
+    function categories(){
+
+      var list=[
+        ["All","🛍️"],
+        ["Electronics","📱"],
+        ["Fashion","👕"],
+        ["Shoes","👟"],
+        ["Watches","⌚"],
+        ["Home","🏠"],
+        ["Toys","🧸"],
+        ["Books","📚"]
+      ];
+
+      return h(
+        "div",
+        {className:"categories"},
+
+        list.map(function(item){
+
+          return h(
+            "button",
+            {
+              key:item[0],
+              className:"cat "+(cat===item[0]?"active":""),
+              onClick:function(){
+                setCat(item[0]);
+                setTab("home");
+              }
+            },
+
+            h("div",{className:"cat-icon"},item[1]),
+            h("div",null,item[0])
+
+          );
+
+        })
+
+      );
+
+    }
+
+    function productCard(p){
+
+      var wished=wish.some(function(x){
+        return x.id===p.id;
+      });
+
+      return h(
+        "div",
+        {className:"card",key:p.id},
+
+        h(
+          "div",
+          {className:"pic"},
+
+          p.image_url ?
+
+          h("img",{
+            src:p.image_url,
+            alt:p.name,
+            loading:"lazy",
+            onError:function(e){
+              e.currentTarget.style.display="none";
+            }
+          })
+
+          :
+
+          h("div",{className:"noimg"},"🛍️")
+
+        ),
+
+        h(
+          "div",
+          {className:"card-body"},
+
+          h(
+            "button",
+            {
+              className:"wish",
+              title:"Wishlist",
+              onClick:function(){
+                toggleWish(p);
+              }
+            },
+            wished ? "❤️" : "♡"
+          ),
+
+          h("h3",null,p.name || "Product"),
+
+          p.brand ?
+          h(
+            "div",
+            {
+              style:{
+                color:"#6b7280",
+                fontSize:"12px",
+                marginBottom:"6px"
+              }
+            },
+            p.brand
+          )
+          : null,
+
+          p.price!=null ?
+
+          h(
+            "div",
+            {className:"price"},
+
+            "₹"+Number(p.price).toLocaleString("en-IN"),
+
+            p.mrp && Number(p.mrp)>Number(p.price) ?
+
+            h(
+              "span",
+              {className:"mrp"},
+              "₹"+Number(p.mrp).toLocaleString("en-IN")
+            )
+
+            : null
+
+          )
+
+          : null,
+
+          h(
+            "button",
+            {
+              className:"buy",
+              onClick:function(){
+                addCart(p);
+              }
+            },
+            "Add to Cart"
+          )
+
+        )
+
+      );
+
+    }
+
+    function Home(){
+
+      var filtered=products.filter(function(p){
+
+        var categoryOk=
+          cat==="All" ||
+          !p.category ||
+          String(p.category).toLowerCase()===cat.toLowerCase();
+
+        var searchOk=
+          !q ||
+          String(p.name||"").toLowerCase().includes(q.toLowerCase()) ||
+          String(p.brand||"").toLowerCase().includes(q.toLowerCase());
+
+        return categoryOk && searchOk;
+
+      });
+
+      return h(
+        "main",
+        {className:"container"},
+
+        h(
+          "section",
+          {className:"hero"},
+
+          h("h1",null,"Smart Shopping. Better Deals."),
+
+          h(
+            "p",
+            null,
+            "Discover products from sellers on ZentraCart."
+          ),
+
+          h(
+            "button",
+            {
+              onClick:function(){
+                document.getElementById("products")?.scrollIntoView({
+                  behavior:"smooth"
+                });
+              }
+            },
+            "Shop Now"
+          )
+
+        ),
+
+        msg ?
+        h("div",{className:"notice"},msg)
+        : null,
+
+        h(
+          "div",
+          {className:"section-title"},
+          h("h2",null,"Shop by Category")
+        ),
+
+        categories(),
+
+        h(
+          "div",
+          {
+            className:"section-title",
+            id:"products"
+          },
+          h(
+            "h2",
+            null,
+            loading ? "Loading Products…" : "Products"
+          )
+        ),
+
+        loading ?
+
+        h(
+          "div",
+          {className:"empty"},
+          h("div",{className:"spin"}),
+          h("p",null,"Loading approved products…")
+        )
+
+        :
+
+        filtered.length ?
+
+        h(
+          "div",
+          {className:"products"},
+          filtered.map(productCard)
+        )
+
+        :
+
+        h(
+          "div",
+          {className:"empty"},
+
+          h(
+            "div",
+            {style:{fontSize:"45px"}},
+            "🛒"
+          ),
+
+          h("h3",null,"No products available yet"),
+
+          h(
+            "p",
+            null,
+            q ?
+            "No product matched your search."
+            :
+            "Products will appear here after sellers add products and admin approves them."
+          )
+
+        )
+
+      );
+
+    }
+
+    function Categories(){
+
+      return h(
+        "main",
+        {className:"container"},
+
+        h(
+          "div",
+          {className:"page-card"},
+
+          h("h2",null,"Categories"),
+
+          h(
+            "p",
+            null,
+            "Choose a category to explore products."
+          ),
+
+          categories()
+
+        )
+
+      );
+
+    }
+
+    function Cart(){
+
+      var total=cart.reduce(function(sum,item){
+
+        return sum+
+          (Number(item.price)||0)*
+          (Number(item.qty)||1);
+
+      },0);
+
+      return h(
+        "main",
+        {className:"container"},
+
+        h(
+          "div",
+          {className:"section-title"},
+          h("h2",null,"Your Cart")
+        ),
+
+        cart.length ?
+
+        h(
+          "div",
+          null,
+
+          cart.map(function(item){
+
+            return h(
+              "div",
+              {
+                className:"page-card",
+                key:item.id
+              },
+
+              h(
+                "div",
+                {
+                  style:{
+                    display:"flex",
+                    gap:"12px",
+                    alignItems:"center"
+                  }
+                },
+
+                h(
+                  "div",
+                  {
+                    style:{
+                      width:"70px",
+                      height:"70px",
+                      background:"#f3f4f6",
+                      borderRadius:"12px",
+                      overflow:"hidden",
+                      display:"flex",
+                      alignItems:"center",
+                      justi
