@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#6d28d9">
+<meta name="description" content="ZentraCart — Smart Shopping. Better Deals.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg">
+<title>ZentraCart — Smart Shopping. Better Deals.</title>
+<style>
+*{box-sizing:border-box}html,body,#root{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#17121f;background:#f7f7fb}
+body{padding-bottom:78px}button,input,select{font:inherit}button{cursor:pointer}
+:root{--p:#6d28d9;--p2:#8b5cf6;--ink:#17121f;--muted:#6b6673;--card:#fff;--line:#ebe8ef}
+.app{max-width:720px;margin:auto;background:#f7f7fb;min-height:100vh}
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);padding:12px 14px;border-bottom:1px solid var(--line)}
+.toprow{display:flex;align-items:center;justify-content:space-between;gap:10px}.logo{font-size:22px;font-weight:900;letter-spacing:-.6px}.logo span{color:var(--p)}
+.iconbtn{width:42px;height:42px;border:0;border-radius:13px;background:#f1edff;color:var(--p);font-size:20px}
+.search{margin-top:10px;display:flex;align-items:center;gap:8px;background:#f4f3f6;border:1px solid #e7e3ec;border-radius:15px;padding:0 12px}.search input{width:100%;border:0;outline:0;background:transparent;padding:13px 4px;font-size:16px}.search button{border:0;background:none;font-size:21px}
+.hero{margin:14px;border-radius:22px;padding:22px;background:linear-gradient(135deg,#5b21b6,#8b5cf6 60%,#c026d3);color:white;overflow:hidden}.hero h1{margin:0;font-size:28px;line-height:1.05}.hero p{opacity:.9;margin:9px 0 16px}.deal{display:inline-flex;background:white;color:#4c1d95;border:0;border-radius:12px;padding:10px 14px;font-weight:800}
+.section{padding:4px 14px 12px}.sectionhead{display:flex;align-items:center;justify-content:space-between;margin:10px 0}.section h2{font-size:20px;margin:0}.muted{color:var(--muted);font-size:13px}
+.cats{display:flex;gap:12px;overflow:auto;padding:4px 0 12px}.cat{min-width:72px;border:0;background:transparent;text-align:center}.catpic{width:58px;height:58px;border-radius:18px;background:#fff;display:grid;place-items:center;font-size:27px;box-shadow:0 2px 10px #0000000d;margin:auto}.cat span{display:block;font-size:12px;margin-top:5px;color:#3f3947}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.card{background:#fff;border:1px solid #eeeaf2;border-radius:17px;overflow:hidden}.pic{height:175px;background:#f1eff5;position:relative}.pic img{width:100%;height:100%;object-fit:cover}.heart{position:absolute;right:8px;top:8px;width:35px;height:35px;border:0;border-radius:50%;background:#fffdd;color:#e11d48;font-size:18px}.cpad{padding:10px}.title{font-size:14px;font-weight:750;line-height:1.3;min-height:37px}.price{font-size:18px;font-weight:900;margin-top:6px}.mrp{text-decoration:line-through;color:#999;font-size:12px;margin-left:5px}.stock{font-size:11px;color:#15803d;margin-top:3px}.add{width:100%;margin-top:8px;border:0;border-radius:11px;background:var(--p);color:white;padding:10px;font-weight:800}.empty{padding:28px;text-align:center;background:#fff;border-radius:16px;border:1px dashed #d8d2e0;color:var(--muted)}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(720px,100%);height:68px;background:#fff;border-top:1px solid #ddd8e4;display:grid;grid-template-columns:repeat(4,1fr);z-index:30;padding-bottom:env(safe-area-inset-bottom)}.nav{border:0;background:white;color:#6d6874;font-size:11px}.nav b{display:block;font-size:22px;line-height:25px}.nav.active{color:var(--p);font-weight:800}
+.page{padding-bottom:15px}.account{padding:18px 14px}.profile{background:#fff;border-radius:20px;padding:18px;display:flex;gap:13px;align-items:center}.avatar{width:58px;height:58px;border-radius:50%;background:#ede9fe;color:var(--p);display:grid;place-items:center;font-size:25px;font-weight:900}.profile h2{margin:0 0 4px;font-size:18px}.settings{background:#fff;border-radius:18px;margin-top:14px;overflow:hidden}.settitle{font-size:19px;font-weight:900;padding:18px 16px 9px}.row{width:100%;display:flex;align-items:center;gap:12px;padding:15px 16px;border:0;border-top:1px solid #f0edf3;background:#fff;text-align:left}.row .ico{width:35px;height:35px;border-radius:12px;background:#f3efff;color:var(--p);display:grid;place-items:center}.row .txt{flex:1}.row strong{display:block;font-size:15px}.row small{color:var(--muted);display:block;margin-top:2px}.chev{color:#999;font-size:20px}
+.modalbg{position:fixed;inset:0;background:#0007;z-index:100;display:grid;place-items:end}.modal{width:min(720px,100%);background:#fff;border-radius:24px 24px 0 0;padding:20px;max-height:90vh;overflow:auto}.close{float:right;border:0;background:#f1eff4;border-radius:50%;width:36px;height:36px}.form{clear:both;padding-top:12px}.form h2{margin:5px 0}.field{width:100%;padding:13px;border:1px solid #ddd7e4;border-radius:12px;margin:7px 0;outline:0}.primary{width:100%;border:0;background:var(--p);color:white;padding:13px;border-radius:12px;font-weight:800;margin-top:7px}.secondary{width:100%;border:1px solid #ddd7e4;background:#fff;padding:13px;border-radius:12px;font-weight:700;margin-top:8px}.tabs{display:flex;gap:8px}.tabs button{flex:1;border:0;padding:10px;border-radius:10px;background:#f3f1f5}.tabs .on{background:#ede9fe;color:var(--p);font-weight:800}.notice{padding:11px;border-radius:11px;background:#fef3c7;color:#92400e;font-size:13px;margin:9px 0}
+.cartline{display:flex;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #eee}.cartline img{width:60px;height:60px;object-fit:cover;border-radius:10px}.cartline .grow{flex:1}.qty{display:flex;align-items:center;gap:8px}.qty button{border:1px solid #ddd;background:#fff;border-radius:8px;width:30px;height:30px}
+@media(min-width:700px){body{background:#e9e7ee}.app{box-shadow:0 0 35px #0001}.hero{margin-top:18px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script>
+const {createElement:h,useEffect,useMemo,useState}=React;
+const SUPABASE_URL="https://vifxsulzansmxuyiakaz.supabase.co";
+const SUPABASE_KEY="sb_publishable_zxIYvmSfDLtP5APEw2pNdQ_bld_R_gE";
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const CATS=[["All","✨"],["Electronics","💻"],["Mobiles","📱"],["Fashion","👕"],["Beauty","💄"],["Home","🏠"],["Appliances","⚡"],["Grocery","🛒"],["Sports","⚽"],["Books","📚"],["Toys","🧸"],["Shoes","👟"]];
+const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+function App(){
+ const[session,setSession]=useState(null),[tab,setTab]=useState("home"),[products,setProducts]=useState([]),[loading,setLoading]=useState(true),[q,setQ]=useState(""),[cat,setCat]=useState("All"),[auth,setAuth]=useState(false),[cart,setCart]=useState([]),[wish,setWish]=useState([]),[profile,setProfile]=useState(null),[msg,setMsg]=useState("");
+ useEffect(()=>{sb.auth.getSession().then(({data})=>setSession(data.session));const {data}=sb.auth.onAuthStateChange((_e,s)=>setSession(s));return()=>data.subscription.unsubscribe()},[]);
+ useEffect(()=>{loadProducts()},[]);
+ useEffect(()=>{if(session){loadProfile();loadCart();loadWish()}else{setCart([]);setWish([]);setProfile(null)}},[session]);
+ async function loadProducts(){setLoading(true);let {data,error}=await sb.from("products").select("id,name,description,price,mrp,discount_percent,category,image_url,stock,status,brand,category_id,seller_id").eq("status","approved").order("created_at",{ascending:false});if(error){console.error(error);setMsg("Products could not be loaded. Please try again.")}setProducts(data||[]);setLoading(false)}
+ async function loadProfile(){let {data}=await sb.from("profiles").select("id,full_name,email,phone,avatar_url,role").eq("id",session.user.id).maybeSingle();setProfile(data)}
+ async function loadCart(){let {data:c}=await sb.from("carts").select("id").eq("user_id",session.user.id).limit(1).maybeSingle();if(!c){setCart([]);return}let {data}=await sb.from("cart_items").select("id,quantity,product_id").eq("cart_id",c.id);if(!data){setCart([]);return}const ids=data.map(x=>x.product_id);if(!ids.length){setCart([]);return}let {data:p}=await sb.from("products").select("id,name,price,image_url,stock").in("id",ids);setCart(data.map(i=>({...i,product:p?.find(x=>x.id===i.product_id)})).filter(x=>x.product))}
+ async function loadWish(){let {data}=await sb.from("wishlists").select("product_id").eq("user_id",session.user.id);setWish((data||[]).map(x=>x.product_id))}
+ async function addCart(p){if(!session){setAuth(true);return}let {data:c}=await sb.from("carts").select("id").eq("user_id",session.user.id).limit(1).maybeSingle();if(!c){const id=Date.now();let r=await sb.from("carts").insert({id,user_id:session.user.id}).select("id").single();if(r.error){setMsg(r.error.message);return}c=r.data}let old=cart.find(x=>x.product_id===p.id);let r;if(old)r=await sb.from("cart_items").update({quantity:old.quantity+1}).eq("id",old.id);else r=await sb.from("cart_items").insert({id:Date.now()+Math.floor(Math.random()*1000),cart_id:c.id,product_id:p.id,quantity:1});if(r.error)setMsg(r.error.message);else{setMsg("Added to cart");loadCart()}}
+ async function toggleWish(p){if(!session){setAuth(true);return}if(wish.includes(p.id)){await sb.from("wishlists").delete().eq("user_id",session.user.id).eq("product_id",p.id);setWish(wish.filter(x=>x!==p.id))}else{let r=await sb.from("wishlists").insert({id:Date.now(),user_id:session.user.id,product_id:p.id});if(!r.error)setWish([...wish,p.id])}}
+ const filtered=useMemo(()=>products.filter(p=>(cat==="All"||String(p.category||"").toLowerCase()===cat.toLowerCase()||String(p.category||"").toLowerCase().includes(cat.toLowerCase()))&&((p.name||"").toLowerCase().includes(q.toLowerCase()))),[products,q,cat]);
+ return h("div",{className:"app"},
+  h("header",{className:"top"},h("div",{className:"toprow"},h("div",{className:"logo"},"🛍️ ",h("span",null,"ZentraCart")),h("button",{className:"iconbtn",onClick:()=>session?setTab("account"):setAuth(true)},session?"👤":"🔐")),
+  h("div",{className:"search"},h("span",null,"⌕"),h("input",{value:q,onChange:e=>setQ(e.target.value),placeholder:"Search products, brands and more"}),h("button",{onClick:()=>setMsg("Voice search will be enabled after microphone permission.")},"🎙️"),h("button",{onClick:()=>setMsg("Camera search will be enabled in the next search module.")},"▣"))),
+  tab==="home"&&h(Home,{filtered,loading,cat,setCat,addCart,toggleWish,wish,msg,setMsg}),
+  tab==="categories"&&h(Categories,{setCat,setTab}),
+  tab==="cart"&&h(Cart,{cart,session,setAuth,loadCart,msg,setMsg}),
+  tab==="account"&&h(Account,{session,profile,setAuth,setTab,setProfile}),
+  h("nav",{className:"bottom"},[
+   ["home","⌂","Home"],["categories","▦","Categories"],["account","♙","Account"],["cart","🛒","Cart"]
+  ].map(([k,i,t])=>h("button",{key:k,className:"nav "+(tab===k?"active":""),onClick:()=>{if((k==="account"||k==="cart")&&!session){setAuth(true);return}setTab(k)}},h("b",null,i),t+(k==="cart"&&cart.length?" "+cart.reduce((a,x)=>a+x.quantity,0):"")))),
+  auth&&h(AuthModal,{close:()=>setAuth(false),onLogin:()=>setAuth(false),msg,setMsg}),
+  msg&&h("div",{style:{position:"fixed",left:"50%",bottom:"80px",transform:"translateX(-50%)",background:"#17121f",color:"#fff",padding:"11px 15px",borderRadius:"12px",zIndex:120,maxWidth:"90%"}},msg,h("button",{style:{marginLeft:8,border:0,background:"transparent",color:"#fff"},onClick:()=>setMsg("")},"×"))
+ )
+}
+function Home({filtered,loading,cat,setCat,addCart,toggleWish,wish}){
+ return h("main",{className:"page"},h("section",{className:"hero"},h("h1",null,"Smart Shopping. Better Deals."),h("p",null,"Discover products from verified sellers on ZentraCart."),h("button",{className:"deal"},"Explore Deals →")),
+ h("section",{className:"section"},h("div",{className:"cats"},CATS.map(([n,ic])=>h("button",{className:"cat",key:n,onClick:()=>setCat(n)},h("div",{className:"catpic"},ic),h("span",null,n)))),
+ h("div",{className:"sectionhead"},h("h2",null,cat==="All"?"Recommended products":cat),h("span",{className:"muted"},filtered.length+" products")),
+ loading?h("div",{className:"empty"},"Loading real products…"):filtered.length?h("div",{className:"grid"},filtered.map(p=>h("article",{className:"card",key:p.id},h("div",{className:"pic"},p.image_url?h("img",{src:p.image_url,alt:p.name,loading:"lazy"}):h("div",{style:{display:"grid",placeItems:"center",height:"100%",fontSize:35}},"🛍️"),h("button",{className:"heart",onClick:()=>toggleWish(p)},wish.includes(p.id)?"♥":"♡")),h("div",{className:"cpad"},h("div",{className:"title"},p.name),h("div",{className:"price"},"₹",Number(p.price||0).toLocaleString("en-IN"),p.mrp&&Number(p.mrp)>Number(p.price)?h("span",{className:"mrp"},"₹",Number(p.mrp).toLocaleString("en-IN")):null),h("div",{className:"stock"},Number(p.stock||0)>0?"In stock":"Currently unavailable"),h("button",{className:"add",disabled:Number(p.stock||0)<=0,onClick:()=>addCart(p)},"Add to cart")))) :h("div",{className:"empty"}, "No approved products are available yet. Sellers/admin can add and approve real products.")))
+}
+function Categories({setCat,setTab}){return h("main",{className:"section"},h("h1",null,"Categories"),h("p",{className:"muted"},"Browse real marketplace categories."),h("div",{className:"grid"},CATS.slice(1).map(([n,ic])=>h("button",{key:n,onClick:()=>{setCat(n);setTab("home")},style:{background:"#fff",border:"1px solid #eee",borderRadius:18,padding:20}},h("div",{style:{fontSize:38}},ic),h("b",null,n))))}
+function Cart({cart,session,setAuth,loadCart}){let total=cart.reduce((s,x)=>s+Number(x.product?.price||0)*x.quantity,0);return h("main",{className:"section"},h("div",{className:"sectionhead"},h("h1",null,"Your Cart"),h("span",{className:"muted"},cart.length+" items")),!session?h("div",{className:"empty"},"Login to view your cart."):cart.length?h("div",{className:"settings"},cart.map(x=>h("div",{className:"cartline",key:x.id},x.product?.image_url?h("img",{src:x.product.image_url,alt:x.product.name}):null,h("div",{className:"grow"},h("b",null,x.product?.name),h("div",null,"₹",Number(x.product?.price||0).toLocaleString("en-IN")),h("small",null,"Quantity: ",x.quantity)),h("button",{onClick:async()=>{await sb.from("cart_items").delete().eq("id",x.id);loadCart()}},"Remove"))),h("div",{style:{padding:"16px 0",fontWeight:900}},"Total: ₹",total.toLocaleString("en-IN"),h("button",{className:"primary",onClick:()=>alert("Checkout will be connected to the real order/payment flow in the next module.")},"Proceed to checkout")):h("div",{className:"empty"},"Your cart is empty. Add a real product to continue."))}
+function Account({session,profile,setAuth,setTab,setProfile}){if(!session)return h("main",{className:"account"},h("div",{className:"empty"},"Sign in to access your ZentraCart account.",h("button",{className:"primary",onClick:()=>setAuth(true)},"Sign in / Create account")));return h("main",{className:"account"},h("div",{className:"profile"},h("div",{className:"avatar"},(profile?.full_name||session.user.email||"U")[0].toUpperCase()),h("div",null,h("h2",null,profile?.full_name||"ZentraCart User"),h("div",{className:"muted"},profile?.email||session.user.email),h("small",{className:"muted"},profile?.role==="admin"?"Owner / Admin":"Buyer"))),
+ h("div",{className:"settings"},h("div",{className:"settitle"},"Profile Settings"),
+ Row("👤","Edit profile","Name, email and mobile",()=>alert("Profile editor will be connected to the profile update module.")),
+ Row("📍","Saved addresses","Add and manage delivery addresses",()=>alert("Address management module coming next.")),
+ Row("文","Change language","English and Indian languages",()=>alert("Language selector module coming next.")),
+ Row("🔔","Notification settings","Order and account notifications",()=>alert("Notification settings module coming next.")),
+ Row("⭐","My subscriptions","Manage subscriptions",()=>alert("Subscription module coming next.")),
+ h("div",{className:"settitle"},"Payments & Wallets"),
+ Row("🎁","Gift card","Add or manage gift cards",()=>alert("Gift card module coming next.")),
+ Row("💳","Saved payment methods","Manage saved payment methods",()=>alert("Payment methods module coming next.")),
+ h("div",{className:"settitle"},"Privacy & Security"),
+ Row("🔒","Privacy Centre","Privacy and account security",()=>alert("Privacy Centre module coming next.")),
+ Row("📱","Manage devices","View signed-in devices",()=>alert("Device management module coming next.")),
+ h("div",{className:"settitle"},"Earn with ZentraCart"),
+ Row("💰","Affiliate programme","Earn through referrals",()=>alert("Affiliate module coming next.")),
+ Row("🏪","Sell on ZentraCart","Become a seller",()=>alert("Seller onboarding module coming next.")),
+ h("div",{className:"settitle"},"Help & Information"),
+ Row("❓","FAQs","Frequently asked questions",()=>alert("FAQ module coming next.")),
+ Row("📋","Terms & Policies","Terms, policies and licences",()=>alert("Legal pages module coming next.")),
+ Row("📸","Follow us","Instagram and YouTube",()=>{window.open("https://www.instagram.com/zentracart/","_blank")}),
+ h("button",{className:"row",style:{color:"#dc2626",fontWeight:800},onClick:async()=>{await sb.auth.signOut();setTab("home")}},h("div",{className:"ico"},"↪"),h("div",{className:"txt"},"Logout"))))}
+function Row(icon,title,sub,onClick){return h("button",{className:"row",onClick},h("div",{className:"ico"},icon),h("div",{className:"txt"},h("strong",null,title),h("small",null,sub)),h("div",{className:"chev"},"›"))}
+function AuthModal({close,onLogin}){const[mode,setMode]=useState("email"),[email,setEmail]=useState(""),[phone,setPhone]=useState(""),[sent,setSent]=useState(false),[msg,setMsg]=useState("");async function send(){setMsg("");let r=mode==="email"?await sb.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}}):await sb.auth.signInWithOtp({phone});if(r.error)setMsg(r.error.message);else setSent(true)}return h("div",{className:"modalbg"},h("div",{className:"modal"},h("button",{className:"close",onClick:close},"×"),h("div",{className:"form"},h("h2",null,"Welcome to ZentraCart"),h("p",{className:"muted"},"Create an account or sign in securely."),h("div",{className:"tabs"},h("button",{className:mode==="email"?"on":"",onClick:()=>setMode("email")},"Email OTP"),h("button",{className:mode==="phone"?"on":"",onClick:()=>setMode("phone")},"Mobile OTP")),mode==="email"?h("input",{className:"field",type:"email",placeholder:"Enter email address",value:email,onChange:e=>setEmail(e.target.value)}):h("input",{className:"field",type:"tel",placeholder:"+91 mobile number",value:phone,onChange:e=>setPhone(e.target.value}),sent&&h("div",{className:"notice"},"OTP/link sent. Check your ",mode==="email"?"email inbox":"SMS","."),msg&&h("div",{className:"notice"},msg),h("button",{className:"primary",onClick:send},sent?"Send again":"Continue"),h("p",{className:"muted",style:{marginTop:12}},"Mobile OTP requires an SMS provider to be configured in Supabase. Email OTP can work once email authentication is enabled.")))}
+ReactDOM.createRoot(document.getElementById("root")).render(h(App));
+</script>
+</body>
+</html>
