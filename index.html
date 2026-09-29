@@ -1,477 +1,91 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#111827">
-<meta name="description" content="ZentraCart — Smart Shopping. Better Deals.">
-<link rel="manifest" href="./manifest.json">
-<link rel="icon" href="./icon.svg">
-<title>ZentraCart — Smart Shopping. Better Deals.</title>
-
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827"><meta name="description" content="ZentraCart — Smart Shopping. Better Deals.">
+<link rel="manifest" href="./manifest.json"><link rel="icon" href="./icon.svg"><title>ZentraCart — Smart Shopping. Better Deals.</title>
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;background:#f5f6f8;color:#111827}
-button,input{font:inherit}
-button{cursor:pointer}
-.top{background:#111827;color:white;padding:12px 16px;position:sticky;top:0;z-index:50}
-.toprow{max-width:1200px;margin:auto;display:flex;align-items:center;gap:12px}
-.logo{font-size:21px;font-weight:800;white-space:nowrap}
-.logo small{display:block;font-size:10px;font-weight:500;color:#cbd5e1}
-.search{flex:1;display:flex;background:white;border-radius:8px;overflow:hidden}
-.search input{width:100%;border:0;outline:0;padding:11px 13px;color:#111827}
-.search button{border:0;background:#f59e0b;padding:0 15px}
-.navbtn{background:transparent;border:0;color:white;padding:8px;font-weight:700}
-.hero{max-width:1200px;margin:16px auto;padding:25px 20px;border-radius:16px;background:linear-gradient(135deg,#111827,#334155);color:white}
-.hero h1{margin:0 0 8px;font-size:30px}
-.hero p{margin:0 0 18px;color:#dbeafe}
-.hero button{border:0;border-radius:9px;padding:11px 17px;background:#f59e0b;font-weight:800}
-.wrap{max-width:1200px;margin:auto;padding:0 14px 90px}
-.section{margin-top:20px}
-.sectionhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.sectionhead h2{font-size:20px;margin:0}
-.categories{display:flex;gap:9px;overflow-x:auto;padding-bottom:4px}
-.cat{border:1px solid #e5e7eb;background:white;border-radius:10px;padding:10px 14px;white-space:nowrap}
-.cat.active{background:#111827;color:white}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.card{background:white;border-radius:13px;overflow:hidden;border:1px solid #e5e7eb;box-shadow:0 2px 8px #0000000a}
-.pic{height:180px;background:#eef2f7;display:flex;align-items:center;justify-content:center;position:relative}
-.pic img{width:100%;height:100%;object-fit:contain}
-.pic .emoji{font-size:60px}
-.wish{position:absolute;right:8px;top:8px;width:35px;height:35px;border-radius:50%;border:0;background:white;font-size:19px}
-.info{padding:12px}
-.name{font-weight:700;line-height:1.3;min-height:40px}
-.meta{font-size:12px;color:#64748b;margin-top:5px}
-.price{font-size:20px;font-weight:800;margin-top:8px}
-.mrp{text-decoration:line-through;color:#94a3b8;font-size:13px;margin-left:5px}
-.discount{color:#15803d;font-size:12px;margin-left:5px}
-.add{width:100%;margin-top:10px;border:0;border-radius:8px;background:#111827;color:white;padding:10px;font-weight:700}
-.empty{background:white;border:1px dashed #cbd5e1;border-radius:13px;padding:30px;text-align:center;color:#64748b}
-.bottom{position:fixed;left:0;right:0;bottom:0;height:64px;background:white;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;z-index:60}
-.bottom button{border:0;background:white;font-size:11px;color:#475569;min-width:70px}
-.bottom button b{display:block;font-size:21px}
-.badge{background:#ef4444;color:white;border-radius:20px;padding:2px 6px;font-size:10px;position:absolute;margin-left:-8px;margin-top:-3px}
-.page{background:#f5f6f8;min-height:calc(100vh - 64px)}
-.panel{background:white;border-radius:14px;padding:18px;margin-top:16px}
-.panel h2{margin-top:0}
-.action{width:100%;border:0;border-radius:9px;background:#111827;color:white;padding:12px;margin-top:10px;font-weight:700}
-.secondary{background:#e5e7eb;color:#111827}
-.cartrow{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #e5e7eb}
-.cartimg{width:75px;height:75px;background:#eef2f7;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:30px}
-.cartrow .grow{flex:1}
-.qty{display:flex;align-items:center;gap:8px;margin-top:8px}
-.qty button{width:30px;height:30px;border:1px solid #cbd5e1;background:white;border-radius:6px}
-.total{display:flex;justify-content:space-between;font-size:19px;font-weight:800;margin-top:15px}
-.notice{padding:12px;background:#fff7ed;border:1px solid #fed7aa;border-radius:9px;color:#9a3412;font-size:13px;margin-top:12px}
-footer{text-align:center;color:#64748b;font-size:12px;padding:25px}
-@media(min-width:700px){
- .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
- .pic{height:220px}
-}
+:root{--bg:#f5f7fb;--card:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--brand:#111827;--accent:#16a34a;--danger:#dc2626}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{padding-bottom:70px}.header{position:sticky;top:0;z-index:50;background:var(--brand);color:#fff;padding:10px 12px}.headrow{display:flex;align-items:center;gap:9px}.logo{font-size:19px;font-weight:900;white-space:nowrap}.search{flex:1;display:flex;background:#fff;border-radius:10px;overflow:hidden}.search input{width:100%;border:0;outline:0;padding:10px}.search button{border:0;background:#fff;padding:0 10px}.wrap{max-width:1180px;margin:auto;padding:14px}.hero{border-radius:18px;background:linear-gradient(135deg,#111827,#374151);color:#fff;padding:24px;margin-bottom:14px}.hero h1{margin:0 0 6px;font-size:27px}.hero p{margin:0;color:#d1d5db}.cats{display:flex;gap:8px;overflow:auto;padding:3px 0 14px}.cat{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 13px}.cat.active{background:var(--brand);color:#fff}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}.pic{width:100%;height:170px;object-fit:cover;background:#eee}.info{padding:10px}.name{font-weight:750;min-height:40px}.muted{font-size:12px;color:var(--muted)}.price{font-size:19px;font-weight:850;margin-top:5px}.mrp{text-decoration:line-through;color:#9ca3af;font-size:12px;margin-left:5px}.off{color:#059669;font-size:12px;margin-left:5px}.actions{display:flex;gap:7px;margin-top:9px}.btn{border:0;border-radius:9px;padding:10px 12px}.primary{background:var(--brand);color:#fff}.green{background:var(--accent);color:#fff}.light{background:#f3f4f6}.danger{background:#fee2e2;color:#991b1b}.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px;margin-bottom:12px}.panel h2,.panel h3{margin-top:0}.field{margin:9px 0}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;border:1px solid #d1d5db;border-radius:9px;padding:10px;background:#fff}.row{display:flex;gap:9px;align-items:center}.row>*{flex:1}.split{display:grid;grid-template-columns:1fr 1fr;gap:9px}.listitem{border-top:1px solid var(--line);padding:11px 0}.empty{text-align:center;color:var(--muted);padding:30px}.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;z-index:60}.bottom button{flex:1;border:0;background:#fff;padding:8px 3px;font-size:11px}.badge{background:#ef4444;color:#fff;border-radius:999px;padding:1px 5px}.hide{display:none!important}.modal{position:fixed;inset:0;background:#0008;z-index:100;display:flex;align-items:flex-end}.sheet{background:#fff;width:100%;max-height:92vh;overflow:auto;border-radius:18px 18px 0 0;padding:18px}.toast{position:fixed;z-index:200;bottom:78px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 14px;border-radius:10px;max-width:92%;text-align:center}.link{color:#2563eb;text-decoration:none}.small{font-size:12px}.success{color:#15803d}.warn{color:#a16207}@media(min-width:720px){.grid{grid-template-columns:repeat(4,1fr)}.pic{height:210px}.bottom{display:none}.wrap{padding:22px}.modal{align-items:center}.sheet{max-width:650px;border-radius:18px}}
 </style>
 </head>
-
 <body>
-
-<div id="app"></div>
-
+<div class="app">
+<header class="header"><div class="headrow"><div class="logo">ZentraCart</div><div class="search"><input id="q" placeholder="Search products, brands & categories" oninput="renderHome()"><button onclick="voiceSearch()">🎙️</button><button onclick="cameraSearch()">📷</button></div><button class="btn light" onclick="show('cart')">🛒 <span id="cartCount">0</span></button></div></header>
+<main class="wrap">
+<section id="home"><div class="hero"><h1>Smart Shopping. Better Deals.</h1><p>Electronics • Beauty • Home • Auto • Sports • Furniture • Books • 2-Wheelers • Fashion</p></div><div id="cats" class="cats"></div><div id="homeMsg"></div><div id="productGrid" class="grid"></div></section>
+<section id="cart" class="hide"><h2>Cart</h2><div id="cartBox"></div></section>
+<section id="orders" class="hide"><h2>My Orders</h2><div id="ordersBox"></div></section>
+<section id="account" class="hide"><div id="accountBox"></div></section>
+<section id="seller" class="hide"><div id="sellerBox"></div></section>
+<section id="admin" class="hide"><div id="adminBox"></div></section>
+</main>
+<nav class="bottom"><button onclick="show('home')">🏠<br>Home</button><button onclick="show('orders')">📦<br>Orders</button><button onclick="show('cart')">🛒 <span id="cartCount2">0</span><br>Cart</button><button onclick="show('seller')">🏪<br>Sell</button><button onclick="show('account')">👤<br>Profile</button></nav>
+</div>
+<div id="modal" class="modal hide"><div class="sheet"><div class="row"><h2 id="modalTitle">ZentraCart</h2><button class="btn light" style="max-width:50px" onclick="closeModal()">✕</button></div><div id="modalBody"></div></div></div>
+<div id="toast" class="toast hide"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL="https://vifxsulzansmxuyiakaz.supabase.co";
-const SUPABASE_KEY="sb_publishable_zxIYvmSfDLtP5APEw2pNdQ_bld_R_gE";
-
-const state={
- page:"home",
- q:"",
- category:"All",
- products:[],
- loading:true,
- error:false,
- cart:load("zc_cart",[]),
- wish:load("zc_wish",[])
-};
-
-function load(k,d){
- try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}
-}
-function save(k,v){
- try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}
-}
-function esc(v){
- return String(v??"").replace(/[&<>"']/g,m=>({
- "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
- }[m]));
-}
-function money(v){
- const n=Number(v||0);
- return "₹"+n.toLocaleString("en-IN");
-}
-function imgFor(p){
- return p.image_url||p.image||p.thumbnail||"";
-}
-function categories(){
- const a=["All"];
- state.products.forEach(p=>{
-   if(p.category && !a.includes(p.category)) a.push(p.category);
- });
- return a;
-}
-function filtered(){
- let a=state.products;
- if(state.category!=="All")
-   a=a.filter(p=>String(p.category||"").toLowerCase()===state.category.toLowerCase());
-
- const q=state.q.trim().toLowerCase();
- if(q)
-   a=a.filter(p=>
-    String(p.name||"").toLowerCase().includes(q)||
-    String(p.category||"").toLowerCase().includes(q)||
-    String(p.brand||"").toLowerCase().includes(q)
-   );
- return a;
-}
-function productCard(p){
- const id=String(p.id);
- const wished=state.wish.includes(id);
- const image=imgFor(p);
- const price=Number(p.price||0);
- const mrp=Number(p.mrp||0);
- const disc=p.discount_percent || (mrp>price&&price?Math.round((mrp-price)/mrp*100):0);
-
- return `
- <div class="card">
-   <div class="pic">
-     ${image
-       ? `<img src="${esc(image)}" alt="${esc(p.name)}" loading="lazy"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">`
-       : ""}
-     <span class="emoji" ${image?'style="display:none"':''}>🛍️</span>
-     <button class="wish" data-action="wish" data-id="${esc(id)}">${wished?"❤️":"♡"}</button>
-   </div>
-   <div class="info">
-     <div class="name">${esc(p.name||"Product")}</div>
-     <div class="meta">${esc(p.brand||p.category||"ZentraCart")}</div>
-     <div class="price">
-       ${money(price)}
-       ${mrp>price?`<span class="mrp">${money(mrp)}</span>`:""}
-       ${disc?`<span class="discount">${disc}% off</span>`:""}
-     </div>
-     <button class="add" data-action="cart" data-id="${esc(id)}">Add to Cart</button>
-   </div>
- </div>`;
-}
-
-function home(){
- const cats=categories();
- const list=filtered();
-
- return `
- <header class="top">
-  <div class="toprow">
-   <div class="logo">ZentraCart<small>Smart Shopping. Better Deals.</small></div>
-   <div class="search">
-    <input id="search" value="${esc(state.q)}" placeholder="Search products...">
-    <button>🔍</button>
-   </div>
-   <button class="navbtn" data-page="cart">🛒<span class="badge">${state.cart.length}</span></button>
-  </div>
- </header>
-
- <main class="wrap">
-  <section class="hero">
-   <h1>Welcome to ZentraCart</h1>
-   <p>Shop smart. Discover great products from sellers.</p>
-   <button data-action="shop">Shop Now</button>
-  </section>
-
-  <section class="section">
-   <div class="sectionhead"><h2>Categories</h2></div>
-   <div class="categories">
-    ${cats.map(c=>`<button class="cat ${state.category===c?"active":""}"
-      data-category="${esc(c)}">${esc(c)}</button>`).join("")}
-   </div>
-  </section>
-
-  <section class="section">
-   <div class="sectionhead">
-    <h2>${state.q?"Search Results":"Latest Products"}</h2>
-    <span>${list.length} items</span>
-   </div>
-
-   ${state.loading
-     ? `<div class="empty">Loading products...</div>`
-     : state.error
-       ? `<div class="empty">
-           <div style="font-size:40px">🛍️</div>
-           <h3>Marketplace ready</h3>
-           <p>Products will appear here after they are approved in your ZentraCart database.</p>
-          </div>`
-       : list.length
-         ? `<div class="grid">${list.map(productCard).join("")}</div>`
-         : `<div class="empty">
-             <div style="font-size:40px">🛒</div>
-             <h3>No products available yet</h3>
-             <p>Add and approve products from the seller/admin system.</p>
-            </div>`
-   }
-  </section>
-
-  <footer>ZentraCart © ${new Date().getFullYear()} · Smart Shopping. Better Deals.</footer>
- </main>
-
- ${bottom()}
- `;
-}
-
-function cartPage(){
- return `
- <header class="top">
-  <div class="toprow">
-   <button class="navbtn" data-page="home">←</button>
-   <div class="logo">My Cart</div>
-  </div>
- </header>
- <main class="wrap">
-  <div class="panel">
-   <h2>Shopping Cart</h2>
-   ${state.cart.length
-     ? state.cart.map((x,i)=>`
-       <div class="cartrow">
-        <div class="cartimg">${x.image?`<img src="${esc(x.image)}" style="max-width:100%;max-height:100%">`:"🛍️"}</div>
-        <div class="grow">
-         <b>${esc(x.name)}</b>
-         <div>${money(x.price)}</div>
-         <div class="qty">
-          <button data-action="minus" data-id="${esc(x.id)}">−</button>
-          <b>${x.qty}</b>
-          <button data-action="plus" data-id="${esc(x.id)}">+</button>
-          <button data-action="remove" data-id="${esc(x.id)}">Remove</button>
-         </div>
-        </div>
-       </div>
-      `).join("")
-     : `<div class="empty">Your cart is empty.</div>`
-   }
-
-   ${state.cart.length?`
-    <div class="total">
-      <span>Total</span>
-      <span>${money(state.cart.reduce((s,x)=>s+(Number(x.price)||0)*x.qty,0))}</span>
-    </div>
-    <div class="notice">
-      Checkout/payment gateway is not being faked here. Real COD/UPI/online payment
-      needs the secure backend/payment configuration.
-    </div>
-    <button class="action" data-action="checkout">Proceed to Checkout</button>
-   `:""}
-  </div>
- </main>
- ${bottom()}
- `;
-}
-
-function accountPage(){
- return `
- <header class="top">
-  <div class="toprow"><div class="logo">ZentraCart</div></div>
- </header>
- <main class="wrap">
-  <div class="panel">
-   <h2>Account</h2>
-   <p>Customer account, seller account and admin roles are designed to run through secure Supabase authentication.</p>
-   <button class="action" data-action="login">Sign In / Create Account</button>
-   <button class="action secondary" data-action="seller">Become a Seller</button>
-   <button class="action secondary" data-action="orders">My Orders</button>
-  </div>
-  <div class="panel">
-   <h2>Marketplace</h2>
-   <p>Customers can browse products, search, add items to cart and save products.</p>
-   <p><b>Seller:</b> products should be submitted for approval before appearing publicly.</p>
-   <p><b>Admin:</b> admin credentials must remain server-side and never be placed in this HTML.</p>
-  </div>
- </main>
- ${bottom()}
- `;
-}
-
-function wishPage(){
- const list=state.products.filter(p=>state.wish.includes(String(p.id)));
- return `
- <header class="top">
-  <div class="toprow">
-   <button class="navbtn" data-page="home">←</button>
-   <div class="logo">Wishlist</div>
-  </div>
- </header>
- <main class="wrap">
-  <section class="section">
-   ${list.length?`<div class="grid">${list.map(productCard).join("")}</div>`
-   :`<div class="empty"><div style="font-size:40px">❤️</div><h3>No saved products</h3></div>`}
-  </section>
- </main>
- ${bottom()}
- `;
-}
-
-function bottom(){
- return `
- <nav class="bottom">
-  <button data-page="home"><b>⌂</b>Home</button>
-  <button data-page="wish"><b>♡</b>Wishlist</button>
-  <button data-page="cart"><b>🛒</b>Cart</button>
-  <button data-page="account"><b>👤</b>Account</button>
- </nav>`;
-}
-
-function render(){
- const root=document.getElementById("app");
- const wasSearch=document.activeElement && document.activeElement.id==="search";
- root.innerHTML=
-   state.page==="cart"?cartPage():
-   state.page==="account"?accountPage():
-   state.page==="wish"?wishPage():home();
-
- if(wasSearch){
-   const s=document.getElementById("search");
-   if(s){s.focus();s.setSelectionRange(s.value.length,s.value.length);}
- }
-}
-
-function addCart(id){
- const p=state.products.find(x=>String(x.id)===String(id));
- if(!p)return;
-
- const found=state.cart.find(x=>String(x.id)===String(id));
- if(found)found.qty++;
- else state.cart.push({
-   id:String(p.id),
-   name:p.name||"Product",
-   price:Number(p.price||0),
-   image:imgFor(p),
-   qty:1
- });
- save("zc_cart",state.cart);
- render();
-}
-
-function changeQty(id,n){
- const x=state.cart.find(a=>String(a.id)===String(id));
- if(!x)return;
- x.qty+=n;
- if(x.qty<=0)state.cart=state.cart.filter(a=>String(a.id)!==String(id));
- save("zc_cart",state.cart);
- render();
-}
-
-function toggleWish(id){
- id=String(id);
- if(state.wish.includes(id))
-   state.wish=state.wish.filter(x=>x!==id);
- else state.wish.push(id);
- save("zc_wish",state.wish);
- render();
-}
-
-document.addEventListener("click",e=>{
- const b=e.target.closest("[data-action],[data-page],[data-category]");
- if(!b)return;
-
- if(b.dataset.page){
-   state.page=b.dataset.page;
-   render();
-   window.scrollTo(0,0);
-   return;
- }
-
- if(b.dataset.category){
-   state.category=b.dataset.category;
-   state.page="home";
-   render();
-   return;
- }
-
- const a=b.dataset.action;
- const id=b.dataset.id;
-
- if(a==="cart")addCart(id);
- if(a==="wish")toggleWish(id);
- if(a==="plus")changeQty(id,1);
- if(a==="minus")changeQty(id,-1);
- if(a==="remove"){
-   state.cart=state.cart.filter(x=>String(x.id)!==String(id));
-   save("zc_cart",state.cart);
-   render();
- }
- if(a==="shop"){
-   window.scrollTo({top:400,behavior:"smooth"});
- }
- if(a==="checkout"){
-   alert("Checkout backend/payment gateway will be connected securely after the order and payment tables are configured.");
- }
- if(a==="login"){
-   alert("Customer authentication will use Supabase Auth.");
- }
- if(a==="seller"){
-   alert("Seller onboarding will use a separate seller account and admin approval workflow.");
- }
- if(a==="orders"){
-   alert("Your orders will appear here after the order system is connected.");
- }
-});
-
-document.addEventListener("input",e=>{
- if(e.target.id==="search"){
-   state.q=e.target.value;
-   state.page="home";
-   render();
- }
-});
-
-async function loadProducts(){
- render();
-
- try{
-   const params=new URLSearchParams({
-     select:"id,name,description,price,mrp,discount_percent,category,image_url,stock,status,brand,seller_id,created_at",
-     status:"eq.approved",
-     order:"created_at.desc"
-   });
-
-   const controller=new AbortController();
-   const timer=setTimeout(()=>controller.abort(),7000);
-
-   const res=await fetch(
-     SUPABASE_URL+"/rest/v1/products?"+params.toString(),
-     {
-       method:"GET",
-       headers:{
-         "apikey":SUPABASE_KEY,
-         "Authorization":"Bearer "+SUPABASE_KEY
-       },
-       signal:controller.signal
-     }
-   );
-
-   clearTimeout(timer);
-
-   if(!res.ok)throw new Error("Products API error "+res.status);
-
-   const data=await res.json();
-   state.products=Array.isArray(data)?data:[];
-   state.loading=false;
-   state.error=false;
- }catch(err){
-   console.log(err);
-   state.loading=false;
-   state.error=true;
-   state.products=[];
- }
-
- render();
-}
-
-render();
-loadProducts();
+const SUPABASE_URL='https://vifxsulzansmxuyiakaz.supabase.co';
+const SUPABASE_KEY='sb_publishable_zxIYvmSfDLtP5APEw2pNdQ_bld_R_gE';
+const COD_FUNCTION=SUPABASE_URL+'/functions/v1/bright-action';
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const CATS=['All','Electronics','Beauty','Home Appliance','Auto','Sports','Furniture','Books','2-Wheelers','Fashion'];
+let products=[],user=null,profile=null,activeCat='All',cart=JSON.parse(localStorage.getItem('zc_cart')||'[]');
+const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const money=n=>'₹'+Number(n||0).toLocaleString('en-IN');
+function toast(x){$('toast').textContent=x;$('toast').classList.remove('hide');setTimeout(()=>$('toast').classList.add('hide'),2500)}
+function saveCart(){localStorage.setItem('zc_cart',JSON.stringify(cart));updateCounts()}
+function updateCounts(){let n=cart.reduce((a,x)=>a+x.qty,0);$('cartCount').textContent=n;$('cartCount2').textContent=n}
+function show(id){['home','cart','orders','account','seller','admin'].forEach(x=>$(x).classList.toggle('hide',x!==id));if(id==='home')renderHome();if(id==='cart')renderCart();if(id==='orders')renderOrders();if(id==='account')renderAccount();if(id==='seller')renderSeller();if(id==='admin')renderAdmin();scrollTo(0,0)}
+function openModal(title,body){$('modalTitle').textContent=title;$('modalBody').innerHTML=body;$('modal').classList.remove('hide')}
+function closeModal(){$('modal').classList.add('hide')}
+async function loadSession(){let r=await db.auth.getSession();user=r.data.session?.user||null;if(user){let p=await db.from('profiles').select('*').eq('id',user.id).maybeSingle();profile=p.data||null}}
+async function loadProducts(){let r=await db.from('products').select('id,name,description,price,mrp,discount_percent,category,image_url,stock,status,brand,seller_id,created_at').eq('status','approved').order('created_at',{ascending:false});if(r.error){$('homeMsg').innerHTML='<div class="panel">Products could not be loaded. Check Supabase/RLS.</div>';return}products=r.data||[]}
+function renderCats(){$('cats').innerHTML=CATS.map(c=>`<button class="cat ${c===activeCat?'active':''}" onclick="activeCat='${esc(c)}';renderHome()">${esc(c)}</button>`).join('')}
+function filtered(){let q=$('q').value.toLowerCase().trim();return products.filter(p=>(activeCat==='All'||String(p.category||'').toLowerCase()===activeCat.toLowerCase())&&(!q||[p.name,p.brand,p.category,p.description].join(' ').toLowerCase().includes(q)))}
+function productCard(p){return `<article class="card"><img class="pic" src="${esc(p.image_url||'https://placehold.co/600x500?text=ZentraCart')}" onerror="this.src='https://placehold.co/600x500?text=ZentraCart'"><div class="info"><div class="muted">${esc(p.brand||p.category||'ZentraCart')}</div><div class="name">${esc(p.name)}</div><div class="price">${money(p.price)} ${p.mrp?`<span class="mrp">${money(p.mrp)}</span>`:''}${p.discount_percent?`<span class="off">${esc(p.discount_percent)}% off</span>`:''}</div><div class="muted">Stock: ${Number(p.stock||0)}</div><div class="actions"><button class="btn light" onclick="details('${p.id}')">View</button><button class="btn primary" onclick="addCart('${p.id}')">Add to Cart</button></div></div></article>`}
+function renderHome(){renderCats();let list=filtered();$('productGrid').innerHTML=list.length?list.map(productCard).join(''):'<div class="panel empty">No products found.</div>'}
+function details(id){let p=products.find(x=>x.id===id);if(!p)return;openModal(p.name,`<img src="${esc(p.image_url||'https://placehold.co/700x500?text=ZentraCart')}" style="width:100%;max-height:300px;object-fit:contain;border-radius:12px"><p>${esc(p.description||'No description')}</p><h2>${money(p.price)}</h2><p>Brand: ${esc(p.brand||'-')}<br>Stock: ${p.stock}</p><button class="btn primary" onclick="addCart('${p.id}');closeModal()">Add to Cart</button>`)}
+function addCart(id){let p=products.find(x=>x.id===id);if(!p||p.stock<1)return toast('Out of stock');let x=cart.find(x=>x.id===id);if(x)x.qty++;else cart.push({id,qty:1});saveCart();toast('Added to cart')}
+function removeCart(id){cart=cart.filter(x=>x.id!==id);saveCart();renderCart()}
+function renderCart(){if(!cart.length){$('cartBox').innerHTML='<div class="panel empty">Your cart is empty.</div>';return}let total=0;let html=cart.map(x=>{let p=products.find(p=>p.id===x.id);if(!p)return '';let line=Number(p.price)*x.qty;total+=line;return `<div class="panel"><div class="row"><img src="${esc(p.image_url||'https://placehold.co/100')}" style="width:65px;height:65px;object-fit:cover;border-radius:8px"><div><b>${esc(p.name)}</b><br>${money(p.price)} × ${x.qty}</div><button class="btn danger" onclick="removeCart('${p.id}')">Remove</button></div></div>`}).join('');$('cartBox').innerHTML=html+`<div class="panel"><h3>Total ${money(total)}</h3><button class="btn green" onclick="checkout()">Checkout</button></div>`}
+async function checkout(){if(!user){openAuth();return}if(!cart.length)return toast('Cart is empty');let r=await db.from('addresses').select('*').eq('buyer_id',user.id).order('is_default',{ascending:false});if(r.error)return toast('Address load failed');let a=r.data?.[0];if(!a){openAddress();return}openCheckout(a)}
+function openAddress(){openModal('Add delivery address',`<div class="field"><label>Full name</label><input id="a_name"></div><div class="field"><label>Mobile</label><input id="a_phone" inputmode="tel"></div><div class="field"><label>Address</label><textarea id="a_line"></textarea></div><div class="split"><div class="field"><label>City</label><input id="a_city"></div><div class="field"><label>State</label><input id="a_state"></div></div><div class="field"><label>Pincode</label><input id="a_pin" inputmode="numeric"></div><button class="btn primary" onclick="saveAddress()">Save & Continue</button>`)}
+async function saveAddress(){let v={buyer_id:user.id,full_name:$('a_name').value,phone:$('a_phone').value,address_line:$('a_line').value,city:$('a_city').value,state:$('a_state').value,Pincode:$('a_pin').value,is_default:true};let r=await db.from('addresses').insert(v).select().single();if(r.error)return toast(r.error.message);closeModal();openCheckout(r.data)}
+function openCheckout(a){openModal('Checkout',`<div class="panel"><b>Delivery</b><p>${esc(a.full_name)}<br>${esc(a.phone)}<br>${esc(a.address_line)}, ${esc(a.city)}, ${esc(a.state)} - ${esc(a.Pincode)}</p></div><div class="panel"><b>Payment</b><p>Cash on Delivery</p><button class="btn green" onclick="placeCOD('${a.id}')">Place COD Order</button></div><div class="panel"><b>Online UPI</b><p class="small warn">Real gateway checkout must be enabled with a server-side payment provider. Do not put gateway secrets in this HTML.</p><button class="btn light" onclick="toast('UPI gateway setup is required before accepting real payments')">Pay Online</button></div>`)}
+async function placeCOD(addressId){let s=await db.auth.getSession();let token=s.data.session?.access_token;if(!token)return toast('Login session expired');let r=await fetch(COD_FUNCTION,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({payment_method:'cod',address_id:addressId})});let out={};try{out=await r.json()}catch{}if(!r.ok){toast(out.error||'COD order failed');return}cart=[];saveCart();closeModal();toast('COD order placed');await loadProducts();show('orders')}
+async function renderOrders(){if(!user){$('ordersBox').innerHTML='<div class="panel empty">Login to view orders.</div>';return}let r=await db.from('orders').select('*').eq('buyer_id',user.id).order('created_at',{ascending:false});if(r.error){$('ordersBox').innerHTML='<div class="panel">Could not load orders.</div>';return}$('ordersBox').innerHTML=r.data?.length?r.data.map(o=>`<div class="panel"><b>Order ${esc(o.order_number||o.id)}</b><p>Status: ${esc(o.order_status||o.status||'placed')}<br>Payment: ${esc(o.payment_method||'cod')} / ${esc(o.payment_status||'pending')}<br>Total: ${money(o.total_amount)}</p></div>`).join(''):'<div class="panel empty">No orders yet.</div>'}
+function openAuth(){openModal('Account',`<div class="field"><label>Email</label><input id="auth_email" type="email"></div><div class="field"><label>Password</label><input id="auth_pass" type="password"></div><div class="row"><button class="btn primary" onclick="signIn()">Sign In</button><button class="btn light" onclick="signUp()">Create Account</button></div><hr><button class="btn light" onclick="sendEmailOTP()">Send Email OTP / Magic Link</button><p class="small">Phone OTP requires SMS provider configuration in Supabase Auth.</p>`)}
+async function signIn(){let email=$('auth_email').value,password=$('auth_pass').value,r=await db.auth.signInWithPassword({email,password});if(r.error)return toast(r.error.message);user=r.data.user;let p=await db.from('profiles').select('*').eq('id',user.id).maybeSingle();profile=p.data||null;closeModal();toast('Signed in');renderAccount()}
+async function signUp(){let email=$('auth_email').value,password=$('auth_pass').value;if(password.length<6)return toast('Password must be at least 6 characters');let r=await db.auth.signUp({email,password,options:{data:{role:'buyer'}}});if(r.error)return toast(r.error.message);toast('Check your email to confirm account');}
+async function sendEmailOTP(){let email=$('auth_email').value;if(!email)return toast('Enter email');let r=await db.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});if(r.error)return toast(r.error.message);toast('Email OTP/link sent')}
+async function logout(){await db.auth.signOut();user=null;profile=null;show('home');toast('Logged out')}
+function renderAccount(){if(!user){$('accountBox').innerHTML='<div class="panel"><h2>Profile</h2><p>Sign in to manage your profile, addresses, orders and settings.</p><button class="btn primary" onclick="openAuth()">Sign In / Create Account</button></div>';return}let role=profile?.role||'buyer';$('accountBox').innerHTML=`<div class="panel"><h2>Profile</h2><p><b>${esc(profile?.full_name||user.email)}</b><br>${esc(user.email)}</p><button class="btn light" onclick="editProfile()">Edit profile</button> <button class="btn danger" onclick="logout()">Log out</button></div><div class="panel"><h3>Account & Settings</h3><div class="listitem">📍 Saved addresses <button class="btn light" onclick="manageAddresses()">Manage</button></div><div class="listitem">🌐 Language <select onchange="localStorage.setItem('zc_lang',this.value)"><option>English</option><option>Hindi</option><option>Spanish</option><option>Bengali</option><option>Marathi</option><option>Tamil</option><option>Telugu</option><option>Gujarati</option><option>Kannada</option><option>Malayalam</option><option>Punjabi</option></select></div><div class="listitem">🔔 Notifications <span class="small">Email/SMS/WhatsApp require provider setup</span></div><div class="listitem">💳 Payments & Wallets <button class="btn light" onclick="paymentSettings()">Open</button></div><div class="listitem">🎁 Gift Card <button class="btn light" onclick="giftCard()">Add</button></div><div class="listitem">🔒 Privacy & Security <button class="btn light" onclick="privacy()">Privacy center</button></div><div class="listitem">📱 Manage devices <button class="btn light" onclick="toast('Device management requires a device/session table and policies')">Open</button></div><div class="listitem">💰 Earn with ZentraCart <button class="btn light" onclick="affiliate()">Affiliate program</button></div><div class="listitem">🏪 Sell on ZentraCart <button class="btn light" onclick="show('seller')">Seller panel</button></div><div class="listitem">❓ FAQ & Terms <button class="btn light" onclick="faq()">Open</button></div><div class="listitem">📝 My Activity <button class="btn light" onclick="activity()">Questions & Answers</button></div><div class="listitem">📸 Profile photo <button class="btn light" onclick="toast('Upload to profile-images storage bucket after creating it')">Change</button></div><div class="listitem">Follow Us: <a class="link" href="https://instagram.com/zentracart" target="_blank">Instagram</a> · <a class="link" href="https://www.youtube.com/@ZentraCart_store" target="_blank">YouTube</a></div><div class="listitem">Professional email: <b>zentracart@gmail.com</b></div></div>`}
+async function editProfile(){let name=prompt('Full name',profile?.full_name||'');if(name===null)return;let phone=prompt('Mobile number',profile?.phone||'');let r=await db.from('profiles').update({full_name:name,phone}).eq('id',user.id);if(r.error)return toast(r.error.message);profile={...profile,full_name:name,phone};renderAccount()}
+async function manageAddresses(){let r=await db.from('addresses').select('*').eq('buyer_id',user.id).order('is_default',{ascending:false});let rows=(r.data||[]).map(a=>`<div class="listitem"><b>${esc(a.full_name)}</b><br>${esc(a.address_line)}, ${esc(a.city)}, ${esc(a.state)} - ${esc(a.Pincode)}<br><button class="btn light" onclick="editAddress('${a.id}')">Change</button></div>`).join('');openModal('Saved addresses',rows+`<button class="btn primary" onclick="closeModal();openAddress()">Add address</button>`)}
+async function editAddress(id){let r=await db.from('addresses').select('*').eq('id',id).eq('buyer_id',user.id).single();if(r.error)return;let a=r.data;openModal('Change address',`<div class="field"><label>Full name</label><input id="a_name" value="${esc(a.full_name)}"></div><div class="field"><label>Mobile</label><input id="a_phone" value="${esc(a.phone)}"></div><div class="field"><label>Address</label><textarea id="a_line">${esc(a.address_line)}</textarea></div><div class="split"><input id="a_city" value="${esc(a.city)}"><input id="a_state" value="${esc(a.state)}"></div><div class="field"><input id="a_pin" value="${esc(a.Pincode)}"></div><button class="btn primary" onclick="updateAddress('${id}')">Save</button>`)}
+async function updateAddress(id){let v={full_name:$('a_name').value,phone:$('a_phone').value,address_line:$('a_line').value,city:$('a_city').value,state:$('a_state').value,Pincode:$('a_pin').value};let r=await db.from('addresses').update(v).eq('id',id).eq('buyer_id',user.id);if(r.error)return toast(r.error.message);closeModal();toast('Address updated')}
+function paymentSettings(){openModal('Saved payment methods','<div class="panel">Saved payment methods should be stored using a secure payment provider token. Never store card/UPI secrets in this HTML.</div>')}
+function giftCard(){openModal('Gift card','<div class="field"><label>Gift card code</label><input id="gift"></div><button class="btn primary" onclick="toast('Gift card validation requires backend rules');closeModal()">Add gift card</button>')}
+function privacy(){openModal('Privacy & Security','<h3>Privacy center</h3><p>Account security, sessions, consent and data deletion should be enforced by Supabase Auth/RLS and server-side policies.</p>')}
+function affiliate(){openModal('Earn with ZentraCart','<h3>ZentraCart Affiliate Program</h3><p>Affiliate commissions require backend tracking, attribution and payout rules before real money is credited.</p>')}
+function faq(){openModal('FAQ & Terms','<h3>FAQs</h3><p>How do I order? Add a product to cart, add a delivery address and checkout.</p><h3>Terms, Policies & Licences</h3><p>Publish your final terms, privacy policy, refund/return policy and seller agreement before production launch.</p>')}
+function activity(){openModal('My Activity','<p>Questions & Answers and other activity can be connected to a dedicated activity table with RLS.</p>')}
+function renderSeller(){if(!user){$('sellerBox').innerHTML='<div class="panel"><h2>Seller Panel</h2><p>Sign in first.</p><button class="btn primary" onclick="openAuth()">Sign In</button></div>';return}if((profile?.role||'buyer')!=='seller'){$('sellerBox').innerHTML='<div class="panel"><h2>Become a Seller</h2><p>Create your seller profile. Admin approval can be enforced with RLS/server-side policies.</p><button class="btn primary" onclick="sellerSignup()">Seller Signup</button></div>';return}loadSellerProducts()}
+async function sellerSignup(){let store=prompt('Store name');if(!store)return;let r=await db.from('seller_profiles').upsert({user_id:user.id,store_name:store});if(r.error)return toast(r.error.message);let p=await db.from('profiles').update({role:'seller'}).eq('id',user.id);if(p.error)return toast(p.error.message);profile={...profile,role:'seller'};toast('Seller profile created');renderSeller()}
+async function loadSellerProducts(){let r=await db.from('products').select('*').eq('seller_id',user.id).order('created_at',{ascending:false});let html='<div class="panel"><h2>Seller Dashboard</h2><button class="btn primary" onclick="addProduct()">Add Product</button></div>';html+=(r.data||[]).map(p=>`<div class="panel"><b>${esc(p.name)}</b><p>${money(p.price)} · Stock ${p.stock} · Status ${esc(p.status)}</p><button class="btn light" onclick="editProduct('${p.id}')">Edit</button> <button class="btn danger" onclick="deleteProduct('${p.id}')">Delete</button></div>`).join('');$('sellerBox').innerHTML=html||'<div class="panel empty">No products yet.</div>'}
+function addProduct(){openModal('Add product',`<div class="field"><label>Name</label><input id="p_name"></div><div class="field"><label>Description</label><textarea id="p_desc"></textarea></div><div class="split"><input id="p_price" placeholder="Price"><input id="p_mrp" placeholder="MRP"></div><div class="split"><input id="p_stock" placeholder="Stock"><input id="p_disc" placeholder="Discount %"></div><div class="split"><input id="p_brand" placeholder="Brand"><input id="p_cat" placeholder="Category"></div><div class="field"><label>Product image URL</label><input id="p_img" placeholder="Storage/public image URL"></div><button class="btn primary" onclick="saveProduct()">Submit product</button>`)}
+async function saveProduct(){let v={seller_id:user.id,name:$('p_name').value,description:$('p_desc').value,price:Number($('p_price').value),mrp:Number($('p_mrp').value)||null,stock:Number($('p_stock').value)||0,discount_percent:Number($('p_disc').value)||0,brand:$('p_brand').value,category:$('p_cat').value,image_url:$('p_img').value,status:'pending'};let r=await db.from('products').insert(v);if(r.error)return toast(r.error.message);closeModal();toast('Product submitted for approval');renderSeller()}
+async function editProduct(id){let r=await db.from('products').select('*').eq('id',id).eq('seller_id',user.id).single();if(r.error)return toast(r.error.message);let p=r.data;openModal('Edit product',`<div class="field"><input id="p_name" value="${esc(p.name)}"></div><div class="field"><input id="p_price" value="${p.price}"></div><div class="field"><input id="p_stock" value="${p.stock}"></div><div class="field"><input id="p_img" value="${esc(p.image_url||'')}"></div><button class="btn primary" onclick="updateProduct('${id}')">Save</button>`)}
+async function updateProduct(id){let r=await db.from('products').update({name:$('p_name').value,price:Number($('p_price').value),stock:Number($('p_stock').value),image_url:$('p_img').value,status:'pending'}).eq('id',id).eq('seller_id',user.id);if(r.error)return toast(r.error.message);closeModal();renderSeller()}
+async function deleteProduct(id){if(!confirm('Delete product?'))return;let r=await db.from('products').delete().eq('id',id).eq('seller_id',user.id);if(r.error)return toast(r.error.message);renderSeller()}
+async function renderAdmin(){if(!user){$('adminBox').innerHTML='<div class="panel"><h2>Admin</h2><button class="btn primary" onclick="openAuth()">Sign In</button></div>';return}if(profile?.role!=='admin'){$('adminBox').innerHTML='<div class="panel">Admin access is restricted by database RLS/server-side authorization.</div>';return}let [p,o,u]=await Promise.all([db.from('products').select('*').order('created_at',{ascending:false}),db.from('orders').select('*').order('created_at',{ascending:false}),db.from('profiles').select('id,email,full_name,role,created_at')]);$('adminBox').innerHTML=`<div class="panel"><h2>Admin Dashboard</h2><p>Products: ${p.data?.length||0} · Orders: ${o.data?.length||0} · Users: ${u.data?.length||0}</p></div>`+(p.data||[]).map(x=>`<div class="panel"><b>${esc(x.name)}</b><p>Status: ${esc(x.status)}</p><button class="btn green" onclick="approve('${x.id}')">Approve</button> <button class="btn danger" onclick="reject('${x.id}')">Reject</button></div>`).join('')}
+async function approve(id){let r=await db.from('products').update({status:'approved',rejection_reason:null}).eq('id',id);if(r.error)return toast(r.error.message);renderAdmin()}
+async function reject(id){let reason=prompt('Rejection reason');if(reason===null)return;let r=await db.from('products').update({status:'rejected',rejection_reason:reason}).eq('id',id);if(r.error)return toast(r.error.message);renderAdmin()}
+function voiceSearch(){if(!('webkitSpeechRecognition'in window))return toast('Voice search not supported');let r=new webkitSpeechRecognition();r.lang='en-IN';r.onresult=e=>{$('q').value=e.results[0][0].transcript;renderHome()};r.start()}
+function cameraSearch(){toast('Camera scan UI is ready for integration; image recognition needs a vision/search service.')}
+$('q').addEventListener('keydown',e=>{if(e.key==='Enter')renderHome()});
+db.auth.onAuthStateChange(async(_e,s)=>{user=s?.user||null;if(user){let p=await db.from('profiles').select('*').eq('id',user.id).maybeSingle();profile=p.data||null}else profile=null;renderAccount()});
+(async()=>{await loadSession();await loadProducts();renderHome();updateCounts();renderAccount()})();
 </script>
-
-</body>
-</html>
+</body></html>
