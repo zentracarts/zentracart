@@ -1,11 +1,27 @@
 # ZentraCart
-A free mobile-first shopping PWA starter.
 
-## Important
-This is a front-end demo/store starter. It does NOT include real Flipkart/Amazon inventory, their trademarks, seller accounts, payment gateway, KYC, shipping APIs, or live order backend.
+ZentraCart — Smart Shopping. Better Deals.
 
-## Deploy free
-Upload these files to GitHub Pages (or another static host). Open the HTTPS URL on Android Chrome and choose Add to Home screen / Install.
+ZentraCart is a mobile-first ecommerce marketplace and Progressive Web App (PWA) with buyer, seller and admin functionality.
 
-## Customize
-Edit the `products` array in `index.html` to add real products and prices. Replace emoji placeholders with your own legally usable product images.
+## Platform
+- Buyer shopping
+- Seller marketplace
+- Product management
+- Cart and wishlist
+- Orders and order tracking
+- COD and online payment architecture
+- Seller commissions and payouts
+- Coupons and offers
+- Reviews and feedback
+- Secure authentication
+- Supabase backend
+- Product image storage
+- Admin management
+- Installable PWA
+
+## Support
+Email: zentracarts@gmail.com
+WhatsApp: +91 90121 46956
+
+ZentraCart is an independent marketplace and is not affiliated with Flipkart, Amazon, Meesho, or any other marketplace.
