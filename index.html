@@ -116,4 +116,125 @@ $('q').addEventListener('keydown',e=>{if(e.key==='Enter')renderHome()});
 db.auth.onAuthStateChange(async(_e,s)=>{user=s?.user||null;if(user){let p=await db.from('profiles').select('*').eq('id',user.id).maybeSingle();profile=p.data||null}else profile=null;renderAccount()});
 (async()=>{await loadSession();await loadProducts();renderHome();updateCounts();renderAccount()})();
 </script>
+  <script>
+(function () {
+  const originalShow = window.show;
+
+  window.show = function(id) {
+    if (typeof originalShow === 'function') {
+      originalShow(id);
+    } else {
+      ['home','cart','orders','account','seller','admin'].forEach(function(x){
+        const el = document.getElementById(x);
+        if (el) el.classList.toggle('hide', x !== id);
+      });
+    }
+
+    if (id === 'account') {
+      const box = document.getElementById('accountBox');
+      if (!box) return;
+
+      if (!window.user) {
+        box.innerHTML = `
+          <div class="panel">
+            <h2>Profile</h2>
+            <p>Welcome to ZentraCart</p>
+            <button class="btn primary" onclick="openAuth()">Sign In / Create Account</button>
+          </div>
+        `;
+      } else {
+        box.innerHTML = `
+          <div class="panel">
+            <h2>Profile</h2>
+            <p><b>${window.profile?.full_name || window.user.email || 'ZentraCart User'}</b></p>
+            <p>${window.user.email || ''}</p>
+            <button class="btn primary" onclick="editProfile()">Edit Profile</button>
+          </div>
+
+          <div class="panel">
+            <h3>Account & Settings</h3>
+
+            <div class="listitem">📍 Saved Addresses
+              <button class="btn light" onclick="manageAddresses()">Manage</button>
+            </div>
+
+            <div class="listitem">🌐 Language
+              <select onchange="localStorage.setItem('zc_lang',this.value)">
+                <option>English</option>
+                <option>Hindi</option>
+                <option>Spanish</option>
+                <option>Bengali</option>
+                <option>Marathi</option>
+                <option>Tamil</option>
+                <option>Telugu</option>
+                <option>Gujarati</option>
+                <option>Kannada</option>
+                <option>Malayalam</option>
+                <option>Punjabi</option>
+              </select>
+            </div>
+
+            <div class="listitem">🔔 Notifications
+              <button class="btn light" onclick="toast('Notification settings')">Open</button>
+            </div>
+
+            <div class="listitem">💳 Payments & Wallets
+              <button class="btn light" onclick="paymentSettings()">Open</button>
+            </div>
+
+            <div class="listitem">🎁 Gift Card
+              <button class="btn light" onclick="giftCard()">Add</button>
+            </div>
+
+            <div class="listitem">🔒 Privacy & Security
+              <button class="btn light" onclick="privacy()">Open</button>
+            </div>
+
+            <div class="listitem">📱 Manage Devices
+              <button class="btn light" onclick="toast('Device management')">Open</button>
+            </div>
+
+            <div class="listitem">💰 Earn with ZentraCart
+              <button class="btn light" onclick="affiliate()">Affiliate Program</button>
+            </div>
+
+            <div class="listitem">🏪 Sell on ZentraCart
+              <button class="btn light" onclick="show('seller')">Seller Panel</button>
+            </div>
+
+            <div class="listitem">❓ FAQ & Terms
+              <button class="btn light" onclick="faq()">Open</button>
+            </div>
+
+            <div class="listitem">📝 My Activity
+              <button class="btn light" onclick="activity()">Open</button>
+            </div>
+
+            <div class="listitem">
+              📸 Profile Photo
+              <button class="btn light" onclick="toast('Profile photo upload will be connected to Supabase Storage')">Change</button>
+            </div>
+
+            <div class="listitem">
+              Follow Us:
+              <a class="link" href="https://instagram.com/zentracart" target="_blank">Instagram</a>
+              ·
+              <a class="link" href="https://www.youtube.com/@ZentraCart_store" target="_blank">YouTube</a>
+            </div>
+
+            <div class="listitem">
+              Professional Email:
+              <b>zentracarts@gmail.com</b>
+            </div>
+
+            <div class="listitem">
+              <button class="btn danger" onclick="logout()">Log Out</button>
+            </div>
+          </div>
+        `;
+      }
+    }
+  };
+})();
+  </script>
 </body></html>
