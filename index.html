@@ -236,5 +236,164 @@ db.auth.onAuthStateChange(async(_e,s)=>{user=s?.user||null;if(user){let p=await 
     }
   };
 })();
+  </script><script>
+window.openAuth = function () {
+  var modal = document.getElementById('modal');
+  var title = document.getElementById('modalTitle');
+  var body = document.getElementById('modalBody');
+
+  if (!modal || !title || !body) {
+    alert('ZentraCart login screen could not open.');
+    return;
+  }
+
+  title.textContent = 'Sign In / Create Account';
+
+  body.innerHTML = `
+    <div class="field">
+      <label>Email</label>
+      <input id="auth_email" type="email" placeholder="Enter your email">
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input id="auth_pass" type="password" placeholder="Minimum 6 characters">
+    </div>
+
+    <div class="row">
+      <button class="btn primary" onclick="window.zcSignIn()">Sign In</button>
+      <button class="btn light" onclick="window.zcSignUp()">Create Account</button>
+    </div>
+
+    <hr>
+
+    <button class="btn light" style="width:100%" onclick="window.zcEmailOTP()">
+      Send Email OTP / Login Link
+    </button>
+
+    <p class="small">
+      Phone OTP bhi add karenge, Supabase SMS provider configure hone ke baad.
+    </p>
+  `;
+
+  modal.classList.remove('hide');
+};
+
+window.zcSignIn = async function () {
+  var email = document.getElementById('auth_email')?.value.trim();
+  var password = document.getElementById('auth_pass')?.value;
+
+  if (!email || !password) {
+    alert('Email aur password enter karo.');
+    return;
+  }
+
+  if (!window.supabase) {
+    alert('Login service load nahi hui. Page refresh karke try karo.');
+    return;
+  }
+
+  var client = window.db;
+
+  if (!client) {
+    client = window.supabase.createClient(
+      'https://vifxsulzansmxuyiakaz.supabase.co',
+      'sb_publishable_zxIYvmSfDLTtP5APEw2pNdQ_bld_R_gE'
+    );
+  }
+
+  var result = await client.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if (result.error) {
+    alert(result.error.message);
+    return;
+  }
+
+  location.reload();
+};
+
+window.zcSignUp = async function () {
+  var email = document.getElementById('auth_email')?.value.trim();
+  var password = document.getElementById('auth_pass')?.value;
+
+  if (!email || !password) {
+    alert('Email aur password enter karo.');
+    return;
+  }
+
+  if (password.length < 6) {
+    alert('Password minimum 6 characters ka hona chahiye.');
+    return;
+  }
+
+  if (!window.supabase) {
+    alert('Login service load nahi hui. Page refresh karke try karo.');
+    return;
+  }
+
+  var client = window.db;
+
+  if (!client) {
+    client = window.supabase.createClient(
+      'https://vifxsulzansmxuyiakaz.supabase.co',
+      'sb_publishable_zxIYvmSfDLTtP5APEw2pNdQ_bld_R_gE'
+    );
+  }
+
+  var result = await client.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      data: { role: 'buyer' }
+    }
+  });
+
+  if (result.error) {
+    alert(result.error.message);
+    return;
+  }
+
+  alert('Account create ho gaya. Agar email confirmation enabled hai to email check karo.');
+};
+
+window.zcEmailOTP = async function () {
+  var email = document.getElementById('auth_email')?.value.trim();
+
+  if (!email) {
+    alert('Pehle email enter karo.');
+    return;
+  }
+
+  if (!window.supabase) {
+    alert('Login service load nahi hui. Page refresh karke try karo.');
+    return;
+  }
+
+  var client = window.db;
+
+  if (!client) {
+    client = window.supabase.createClient(
+      'https://vifxsulzansmxuyiakaz.supabase.co',
+      'sb_publishable_zxIYvmSfDLTtP5APEw2pNdQ_bld_R_gE'
+    );
+  }
+
+  var result = await client.auth.signInWithOtp({
+    email: email,
+    options: {
+      emailRedirectTo: location.href
+    }
+  });
+
+  if (result.error) {
+    alert(result.error.message);
+    return;
+  }
+
+  alert('Email login link/OTP bhej diya gaya hai. Email check karo.');
+};
   </script>
 </body></html>
