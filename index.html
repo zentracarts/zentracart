@@ -23,6 +23,15 @@
 </div>
 <div id="modal" class="modal hide"><div class="sheet"><div class="row"><h2 id="modalTitle">ZentraCart</h2><button class="btn light" style="max-width:50px" onclick="closeModal()">✕</button></div><div id="modalBody"></div></div></div>
 <div id="toast" class="toast hide"></div>
+  <script>
+window.show=function(id){
+  ['home','cart','orders','account','seller','admin'].forEach(function(x){
+    var el=document.getElementById(x);
+    if(el) el.classList.toggle('hide',x!==id);
+  });
+  window.scrollTo(0,0);
+};
+  </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   window.addEventListener("error", function(e) {
