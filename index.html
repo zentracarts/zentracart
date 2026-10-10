@@ -53,10 +53,12 @@ window.show=function(id){
 window.addEventListener("unhandledrejection", function(e) {
   console.error("ZentraCart promise error:", e.reason);
 });
-const SUPABASE_URL='https://qysxatboebapmtdyvlei.supabase.co';
-SUPABASE_KEY='sb_publishable_kkQRY_ptQD0o8kqh6tf5hw_NTIQqZjr
-const COD_FUNCTION=SUPABASE_URL+'/functions/v1/bright-action';
-const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+const SUPABASE_URL = 'https://qysxatboebapmtdyvlei.supabase.co';
+const SUPABASE_KEY = 'YAHAN_NAYI_PUBLISHABLE_KEY_PASTE_KARO';
+const COD_FUNCTION = SUPABASE_URL + '/functions/v1/bright-action';
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
 const CATS=['All','Electronics','Beauty','Home Appliance','Auto','Sports','Furniture','Books','2-Wheelers','Fashion'];
 let products=[],user=null,profile=null,activeCat='All',cart=JSON.parse(localStorage.getItem('zc_cart')||'[]');
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
