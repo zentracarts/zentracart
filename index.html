@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<meta name="description" content="ZentraCart — Smart Shopping. Better Deals.">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg">
+<title>ZentraCart — Smart Shopping. Better Deals.</title>
+<style>
+:root{--ink:#111827;--muted:#64748b;--line:#e5e7eb;--brand:#f59e0b;--bg:#f8fafc;--white:#fff;--green:#047857;--red:#b91c1c}
+*{box-sizing:border-box}body{margin:0;font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:11px 14px;background:var(--ink);color:#fff;font-weight:650}button:disabled{opacity:.5;cursor:not-allowed}.secondary{background:#eef2f7;color:var(--ink)}.accent{background:var(--brand);color:#111827}.danger{background:#fee2e2;color:#991b1b}.wrap{max-width:1180px;margin:auto;padding:14px}.top{background:var(--ink);color:white;position:sticky;top:0;z-index:5;box-shadow:0 3px 12px #0002}.topinner{max-width:1180px;margin:auto;padding:12px 14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}.brand{font-size:20px;font-weight:850;white-space:nowrap;color:#fff;text-decoration:none}.brand b{color:var(--brand)}.search{flex:1;display:flex;min-width:190px;gap:6px}.search input{width:100%;min-width:0}.top button{padding:9px 12px}.field,input,select,textarea{width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:9px;background:white;color:var(--ink)}label{display:block;font-size:13px;font-weight:700;margin:10px 0 5px}.muted{color:var(--muted)}.small{font-size:12px}.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.between{display:flex;justify-content:space-between;align-items:center;gap:10px}.hero{padding:24px;border-radius:18px;background:linear-gradient(120deg,#111827,#334155);color:white;margin:16px 0}.hero h1{font-size:clamp(24px,5vw,38px);margin:0 0 8px}.hero p{margin:0 0 16px;color:#e2e8f0}.section{margin:20px 0}.section h2{font-size:21px;margin:0 0 12px}.chips{display:flex;gap:8px;overflow:auto;padding:2px 0 8px}.chip{white-space:nowrap;background:white;color:var(--ink);border:1px solid var(--line)}.chip.active{background:var(--brand);border-color:var(--brand)}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.card,.panel{background:white;border:1px solid var(--line);border-radius:14px;overflow:hidden}.productimg{height:155px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;color:#94a3b8;font-size:42px;overflow:hidden}.productimg img{width:100%;height:100%;object-fit:contain}.cardbody{padding:12px}.card h3{font-size:15px;margin:0 0 7px;line-height:1.3}.price{font-size:19px;font-weight:800}.old{color:var(--muted);text-decoration:line-through;font-size:12px}.card button{width:100%;margin-top:9px}.panel{padding:16px;margin:14px 0}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hidden{display:none!important}.status{padding:10px 12px;border-radius:10px;margin:10px 0;background:#e0f2fe;color:#075985;white-space:pre-wrap}.status.error{background:#fee2e2;color:#991b1b}.status.ok{background:#dcfce7;color:#166534}.footer{margin-top:32px;background:#111827;color:#e5e7eb;padding:24px 14px}.footer a{color:#fbbf24}.navrow{display:flex;gap:8px;flex-wrap:wrap}.navrow button{flex:1}.qty{display:flex;align-items:center;gap:8px}.qty button{padding:4px 10px}.cartline{display:grid;grid-template-columns:1fr auto;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.notice{background:#fffbeb;border:1px solid #fde68a;padding:12px;border-radius:10px;color:#92400e}.pill{display:inline-block;background:#f1f5f9;border-radius:999px;padding:3px 8px;font-size:12px}.empty{text-align:center;padding:26px;color:var(--muted)}a{color:#0369a1}@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.productimg{height:135px}.two{grid-template-columns:1fr}.topinner{gap:8px}.brand{font-size:18px}}@media(max-width:380px){.grid{gap:8px}.cardbody{padding:9px}.productimg{height:115px}.wrap{padding:10px}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="top"><div class="topinner">
+<a class="brand" href="./">Zentra<b>Cart</b></a>
+<div class="search"><input id="searchInput" placeholder="Search products..." aria-label="Search products"><button class="accent" id="searchBtn">Search</button><button id="voiceBtn" title="Voice search">🎙</button></div>
+<button class="secondary" id="accountTop">Login</button><button class="accent" id="cartTop">Cart <span id="cartCount">0</span></button>
+</div></header>
+<main class="wrap">
+<div id="globalStatus" class="status hidden" role="status"></div>
+<section id="homeView">
+<div class="hero"><h1>Smart Shopping. Better Deals.</h1><p>Discover useful products and shop with confidence on ZentraCart.</p><div class="row"><button class="accent" id="shopNow">Explore products</button><button class="secondary" id="sellHero">Sell on ZentraCart</button></div></div>
+<div class="section"><h2>Shop by category</h2><div id="categoryChips" class="chips"></div></div>
+<div class="section"><div class="between"><h2 id="productsHeading">Products</h2><select id="sortSelect" style="width:auto;max-width:170px"><option value="recommended">Recommended</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="new">Newest</option></select></div><div id="productGrid" class="grid"><div class="panel">Loading products…</div></div></div>
+</section>
+
+<section id="productView" class="hidden"><button class="secondary" id="backHome">← Back to products</button><div id="productDetail"></div></section>
+<section id="cartView" class="hidden"><div class="between"><h2>Your cart</h2><button class="secondary" id="cartContinue">Continue shopping</button></div><div id="cartContents" class="panel"></div></section>
+<section id="checkoutView" class="hidden"><h2>Checkout</h2><div class="notice">Cash on Delivery (COD) is offered only if the server function accepts the order. Online payment must be enabled and tested separately before accepting real payments.</div><div class="panel"><h3>Delivery details</h3><form id="checkoutForm"><label>Full name</label><input name="full_name" required autocomplete="name"><label>Mobile number</label><input name="phone" required inputmode="tel" pattern="[0-9+ ()-]{10,16}" autocomplete="tel"><label>House, street, area</label><textarea name="address_line" required rows="2" autocomplete="street-address"></textarea><div class="two"><div><label>City</label><input name="city" required autocomplete="address-level2"></div><div><label>State</label><input name="state" required autocomplete="address-level1"></div></div><label>PIN code</label><input name="pincode" required inputmode="numeric" pattern="[0-9]{6}" autocomplete="postal-code"><label>Payment method</label><select name="payment_method"><option value="cod">Cash on Delivery</option></select><div id="checkoutSummary"></div><button class="accent" type="submit">Place COD order</button><button type="button" class="secondary" id="checkoutCancel">Cancel</button></form></div></section>
+
+<section id="authView" class="hidden"><h2>Login / Create account</h2><div class="panel"><p class="muted">Sign in with your email. Supabase email confirmation settings may require you to open the link sent to your inbox.</p><form id="authForm"><label>Email address</label><input name="email" type="email" required autocomplete="email"><label>Password</label><input name="password" type="password" minlength="6" required autocomplete="current-password"><div class="row" style="margin-top:12px"><button class="accent" type="submit" id="loginBtn">Login</button><button type="button" class="secondary" id="signupBtn">Create account</button></div></form><button type="button" class="secondary" id="magicBtn" style="margin-top:10px">Email me a sign-in link</button><p class="small muted">Use the same email address you registered with. Do not share your password or OTP with anyone.</p></div></section>
+
+<section id="accountView" class="hidden"><div class="between"><h2>My account</h2><button class="secondary" id="logoutBtn">Logout</button></div><div class="panel"><div id="userInfo"></div><div class="navrow" style="margin-top:12px"><button id="myOrdersBtn">My Orders</button><button class="secondary" id="sellerBtn">Seller centre</button><button class="secondary" id="refreshAccount">Refresh</button></div></div><div id="accountOrders"></div></section>
+<section id="sellerView" class="hidden"><div class="between"><h2>Seller centre</h2><button class="secondary" id="sellerBack">Back</button></div><div class="panel"><div class="notice">Seller tools depend on your Supabase tables and Row Level Security (RLS). This page never grants admin access. If a database field differs, the page will show the server error.</div><form id="sellerForm"><label>Store name</label><input name="store_name" required><label>Product name</label><input name="name" required><label>Description</label><textarea name="description" rows="2"></textarea><div class="two"><div><label>Price (₹)</label><input name="price" type="number" min="1" step="0.01" required></div><div><label>Stock</label><input name="stock" type="number" min="0" step="1" value="1" required></div></div><label>Category</label><select name="category"><option>Electronics</option><option>Fashion</option><option>Home</option><option>Beauty</option><option>Sports</option><option>Auto</option><option>Books</option><option>Other</option></select><label>Product image URL (optional)</label><input name="image_url" type="url" placeholder="https://..."><button class="accent" type="submit" style="margin-top:14px">Submit product for review</button></form></div><div id="sellerProducts" class="panel"></div></section>
+<section id="ordersView" class="hidden"><div class="between"><h2>My Orders</h2><button class="secondary" id="ordersBack">Back</button></div><div id="ordersList" class="panel"></div></section>
+</main>
+<footer class="footer"><div class="wrap"><strong>ZentraCart — Smart Shopping. Better Deals.</strong><p>Need help? <a href="mailto:zentracarts@gmail.com">zentracarts@gmail.com</a></p><p><a href="https://www.instagram.com/zentracart/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@ZentraCart_store" target="_blank" rel="noopener">YouTube</a></p><p class="small">Product availability, order creation, and account access depend on your connected backend and its security policies.</p></div></footer>
+<script>
+/*
+  REQUIRED SETUP:
+  1) Replace SUPABASE_URL only if your current project URL differs.
+  2) Paste the current project's publishable key into SUPABASE_KEY.
+  3) Never put a service_role/secret key in this public file.
+*/
+const SUPABASE_URL = 'https://qysxatboebapmtdyvlei.supabase.co';
+const SUPABASE_KEY = 'PASTE_YOUR_CURRENT_SUPABASE_PUBLISHABLE_KEY_HERE';
+const COD_FUNCTION = SUPABASE_URL + '/functions/v1/bright-action';
+const CATEGORIES = ['All','Electronics','Mobiles','Fashion','Shoes','Beauty','Home','Home Appliance','Auto','Sports','Furniture','Books','Other'];
+const $ = (id) => document.getElementById(id);
+let db = null, currentUser = null, products = [], selectedCategory = 'All', selectedProduct = null;
+let cart = {};
+const views = ['homeView','productView','cartView','checkoutView','authView','accountView','sellerView','ordersView'];
+function status(message, type='') { const el=$('globalStatus'); el.textContent=message; el.className='status'+(type?' '+type:''); el.classList.remove('hidden'); }
+function clearStatus(){ $('globalStatus').classList.add('hidden'); }
+function showView(id){ views.forEach(v=>$(v).classList.toggle('hidden',v!==id)); clearStatus(); window.scrollTo({top:0,behavior:'smooth'}); }
+function money(v){ return '₹'+Number(v||0).toLocaleString('en-IN',{maximumFractionDigits:2}); }
+function safe(s){ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function imageMarkup(url){ return url ? `<img src="${safe(url)}" alt="" loading="lazy" onerror="this.parentElement.textContent='🛍️'">` : '🛍️'; }
+function setAuthButton(){ $('accountTop').textContent=currentUser?'My account':'Login'; }
+function cartSize(){ return Object.values(cart).reduce((n,x)=>n+x.qty,0); }
+function updateCartCount(){ $('cartCount').textContent=cartSize(); }
+function getPrice(p){ return Number(p.price ?? p.selling_price ?? p.amount ?? 0); }
+function getImage(p){ return p.image_url || p.image || p.image_path || (Array.isArray(p.images)?p.images[0]:'') || ''; }
+function getCategory(p){ return p.category || 'Other'; }
+function normalizeProduct(p){ return {...p,_price:getPrice(p),_image:getImage(p),_category:getCategory(p)}; }
+function renderCategories(){
+ $('categoryChips').innerHTML=CATEGORIES.map(c=>`<button class="chip ${c===selectedCategory?'active':''}" data-cat="${safe(c)}">${safe(c)}</button>`).join('');
+ $('categoryChips').querySelectorAll('[data-cat]').forEach(b=>b.addEventListener('click',()=>{selectedCategory=b.dataset.cat;renderCategories();renderProducts();}));
+}
+function renderProducts(){
+ let list=products.filter(p=>(selectedCategory==='All'||String(p._category).toLowerCase()===selectedCategory.toLowerCase())&&((p.name||p.title||'').toLowerCase().includes($('searchInput').value.trim().toLowerCase())||(p.description||'').toLowerCase().includes($('searchInput').value.trim().toLowerCase())));
+ const sort=$('sortSelect').value;if(sort==='low')list.sort((a,b)=>a._price-b._price);if(sort==='high')list.sort((a,b)=>b._price-a._price);if(sort==='new')list.sort((a,b)=>new Date(b.created_at||0)-new Date(a.created_at||0));
+ $('productsHeading').textContent=selectedCategory==='All'?'Products':selectedCategory+' products';
+ if(!list.length){$('productGrid').innerHTML=`<div class="panel empty" style="grid-column:1/-1">No products found. If this is your first setup, add products in Supabase or submit one from Seller centre.</div>`;return;}
+ $('productGrid').innerHTML=list.map(p=>`<article class="card"><div class="productimg">${imageMarkup(p._image)}</div><div class="cardbody"><h3>${safe(p.name||p.title||'Product')}</h3><div class="muted small">${safe(p._category)}</div><div class="price">${money(p._price)}</div><div class="small muted">${p.stock!==undefined?Number(p.stock)>0?'In stock':'Out of stock':''}</div><button data-open="${safe(p.id)}" class="secondary">View details</button><button data-add="${safe(p.id)}" class="accent">Add to cart</button></div></article>`).join('');
+ $('productGrid').querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>openProduct(b.dataset.open)));
+ $('productGrid').querySelectorAll('[data-add]').forEach(b=>b.addEventListener('click',()=>addToCart(b.dataset.add)));
+}
+function openProduct(id){selectedProduct=products.find(p=>String(p.id)===String(id));if(!selectedProduct)return;const p=selectedProduct;$('productDetail').innerHTML=`<div class="panel"><div class="productimg" style="height:260px">${imageMarkup(p._image)}</div><h2>${safe(p.name||p.title||'Product')}</h2><p class="muted">${safe(p._category)}</p><div class="price">${money(p._price)}</div><p>${safe(p.description||'No description provided.')}</p><p class="muted small">${p.stock!==undefined?(Number(p.stock)>0?'Available stock: '+Number(p.stock):'Currently out of stock'):''}</p><button class="accent" id="detailAdd">Add to cart</button></div>`;$('detailAdd').addEventListener('click',()=>addToCart(p.id));showView('productView');}
+function addToCart(id){const p=products.find(x=>String(x.id)===String(id));if(!p){status('Product could not be found. Refresh the page and try again.','error');return;}if(p.stock!==undefined&&Number(p.stock)<1){status('This product is currently out of stock.','error');return;}if(!cart[id])cart[id]={product:p,qty:0};cart[id].qty++;updateCartCount();status('Added to cart.','ok');}
+function renderCart(){
+ const lines=Object.entries(cart);if(!lines.length){$('cartContents').innerHTML='<div class="empty">Your cart is empty.</div>';return;}
+ const total=lines.reduce((s,[,x])=>s+x.product._price*x.qty,0);
+ $('cartContents').innerHTML=lines.map(([id,x])=>`<div class="cartline"><div><strong>${safe(x.product.name||x.product.title||'Product')}</strong><div>${money(x.product._price)} each</div><div class="qty" style="margin-top:8px"><button class="secondary" data-minus="${safe(id)}">−</button><span>${x.qty}</span><button class="secondary" data-plus="${safe(id)}">+</button><button class="danger" data-remove="${safe(id)}">Remove</button></div></div><strong>${money(x.product._price*x.qty)}</strong></div>`).join('')+`<div class="between" style="padding-top:14px"><strong>Total</strong><strong class="price">${money(total)}</strong></div><button class="accent" id="goCheckout" style="width:100%;margin-top:12px">Proceed to checkout</button>`;
+ $('cartContents').querySelectorAll('[data-minus]').forEach(b=>b.onclick=()=>{cart[b.dataset.minus].qty--;if(cart[b.dataset.minus].qty<=0)delete cart[b.dataset.minus];updateCartCount();renderCart();});
+ $('cartContents').querySelectorAll('[data-plus]').forEach(b=>b.onclick=()=>{cart[b.dataset.plus].qty++;updateCartCount();renderCart();});
+ $('cartContents').querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{delete cart[b.dataset.remove];updateCartCount();renderCart();});
+ $('goCheckout').onclick=()=>{if(!currentUser){status('Please log in before checkout.','error');showView('authView');return;}const form=$('checkoutForm');form.elements.full_name.value=currentUser.user_metadata?.full_name||'';form.elements.phone.value=currentUser.user_metadata?.phone||'';$('checkoutSummary').innerHTML=`<p><strong>Order total: ${money(total)}</strong></p>`;showView('checkoutView');};
+}
+async function loadProducts(){
+ if(!db){$('productGrid').innerHTML='<div class="panel notice" style="grid-column:1/-1">Setup needed: add your current Supabase publishable key in this file, then commit it in GitHub.</div>';return;}
+ $('productGrid').innerHTML='<div class="panel">Loading products…</div>';
+ // Query common columns; if your schema uses different status values, inspect the error below.
+ let result=await db.from('products').select('*').limit(100);
+ if(result.error){$('productGrid').innerHTML='<div class="panel notice" style="grid-column:1/-1">Products could not load: '+safe(result.error.message)+'. Check the products table, its columns, and SELECT RLS policy in Supabase.</div>';return;}
+ products=(result.data||[]).map(normalizeProduct).filter(p=>!p.status||['active','approved','published','live'].includes(String(p.status).toLowerCase()));
+ renderCategories();renderProducts();
+}
+async function authRefresh(session){currentUser=session?.user||null;setAuthButton();}
+async function authAction(mode){
+ if(!db){status('Supabase key is not configured. Add your current publishable key in the setup section of this file.','error');return;}
+ const f=$('authForm'),email=f.elements.email.value.trim(),password=f.elements.password.value;
+ try{
+  let r;
+  if(mode==='signup')r=await db.auth.signUp({email,password,options:{emailRedirectTo:location.origin+location.pathname}});
+  else if(mode==='magic')r=await db.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});
+  else r=await db.auth.signInWithPassword({email,password});
+  if(r.error)throw r.error;
+  if(mode==='signup'&&!r.data.session){status('Account request sent. Check your email for the confirmation link, then return here and log in.','ok');return;}
+  if(mode==='magic'){status('Sign-in link sent if the email is registered. Check your inbox.','ok');return;}
+  currentUser=r.data.user||r.data.session?.user||null;setAuthButton();status('You are signed in.','ok');showView('accountView');renderAccount();
+ }catch(e){status('Authentication failed: '+(e.message||'Unknown error')+'. Confirm the URL/key match the same Supabase project and check Authentication settings.','error');}
+}
+async function renderAccount(){
+ if(!currentUser){$('userInfo').innerHTML='<p>You are not signed in.</p>';return;}
+ $('userInfo').innerHTML=`<strong>${safe(currentUser.user_metadata?.full_name||currentUser.email||'Account')}</strong><p class="muted">${safe(currentUser.email||'')}</p><p class="small muted">User ID: ${safe(currentUser.id)}</p>`;
+}
+async function loadOrders(){
+ if(!db||!currentUser){$('ordersList').innerHTML='<div class="empty">Please log in to see your orders.</div>';return;}
+ $('ordersList').innerHTML='<div class="empty">Loading orders…</div>';
+ // The buyer_id column is the expected ownership field; RLS must restrict rows to the signed-in user.
+ const r=await db.from('orders').select('*').eq('buyer_id',currentUser.id).order('created_at',{ascending:false}).limit(50);
+ if(r.error){$('ordersList').innerHTML='<div class="notice">Could not load orders: '+safe(r.error.message)+'. Check the orders table column names and RLS policies.</div>';return;}
+ $('ordersList').innerHTML=(r.data||[]).length?(r.data||[]).map(o=>`<div class="cartline"><div><strong>Order #${safe(String(o.id).slice(0,12))}</strong><div class="muted small">${safe(o.created_at||'')}</div><div>Status: <span class="pill">${safe(o.status||'placed')}</span></div><div>Payment: ${safe(o.payment_method||'')}</div></div><strong>${money(o.total_amount??o.total??o.amount??0)}</strong></div>`).join(''):'<div class="empty">No orders found yet.</div>';
+}
+async function placeOrder(e){
+ e.preventDefault();if(!currentUser){status('Please log in first.','error');showView('authView');return;}const lines=Object.values(cart);if(!lines.length){status('Your cart is empty.','error');showView('cartView');return;}
+ const f=e.currentTarget,fd=new FormData(f);const payload={action:'create_order',buyer_id:currentUser.id,customer:{full_name:fd.get('full_name'),phone:fd.get('phone'),address_line:fd.get('address_line'),city:fd.get('city'),state:fd.get('state'),pincode:fd.get('pincode')},payment_method:'cod',items:lines.map(x=>({product_id:x.product.id,quantity:x.qty,price:x.product._price}))};
+ const btn=f.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Placing order…';
+ try{
+  const {data:{session}}=await db.auth.getSession();if(!session?.access_token)throw new Error('Your login session expired. Please log in again.');
+  const res=await fetch(COD_FUNCTION,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+session.access_token,'apikey':SUPABASE_KEY},body:JSON.stringify(payload)});
+  const body=await res.json().catch(()=>({}));
+  if(!res.ok)throw new Error(body.error||body.message||('Server returned HTTP '+res.status));
+  if(body.success===false||body.error)throw new Error(body.error||body.message||'Order was rejected by the server.');
+  cart={};updateCartCount();status('Order request submitted. Check My Orders for confirmation.','ok');showView('ordersView');await loadOrders();
+ }catch(err){status('Order was not confirmed: '+(err.message||'Unknown error')+'. No success is assumed. Check the bright-action Edge Function request format and server logs.','error');}
+ finally{btn.disabled=false;btn.textContent='Place COD order';}
+}
+async function sellerSubmit(e){
+ e.preventDefault();if(!db||!currentUser){status('Please configure Supabase and log in first.','error');return;}
+ const f=e.currentTarget,fd=new FormData(f);
+ try{
+  const {data:prof,error:pe}=await db.from('seller_profiles').select('*').eq('user_id',currentUser.id).maybeSingle();
+  if(pe)throw pe;if(!prof)throw new Error('No seller profile found for this account. Seller registration/approval must be configured in the backend first.');
+  const row={seller_id:currentUser.id,name:fd.get('name'),description:fd.get('description'),price:Number(fd.get('price')),stock:Number(fd.get('stock')),category:fd.get('category'),image_url:fd.get('image_url')||null,status:'pending'};
+  const r=await db.from('products').insert(row);if(r.error)throw r.error;f.reset();status('Product submitted. It will appear only after the database/admin approval flow allows it.','ok');await loadSellerProducts();
+ }catch(err){status('Seller product was not saved: '+(err.message||'Unknown error')+'. Confirm seller_profiles and products columns/policies.','error');}
+}
+async function loadSellerProducts(){
+ if(!db||!currentUser){$('sellerProducts').textContent='Log in first.';return;}
+ const r=await db.from('products').select('*').eq('seller_id',currentUser.id).order('created_at',{ascending:false}).limit(50);
+ if(r.error){$('sellerProducts').textContent='Could not load seller products: '+r.error.message;return;}
+ $('sellerProducts').innerHTML='<h3>Your submitted products</h3>'+((r.data||[]).map(p=>`<div class="cartline"><div><strong>${safe(p.name||'Product')}</strong><div class="muted small">${safe(p.status||'')}</div></div><strong>${money(p.price)}</strong></div>`).join('')||'<p class="muted">No products submitted yet.</p>');
+}
+function init(){
+ renderCategories();
+ $('searchBtn').onclick=renderProducts;$('searchInput').addEventListener('input',renderProducts);$('sortSelect').onchange=renderProducts;
+ $('shopNow').onclick=()=>{showView('homeView');$('productsHeading').scrollIntoView({behavior:'smooth'});};
+ $('accountTop').onclick=()=>{if(currentUser){showView('accountView');renderAccount();}else showView('authView');};
+ $('cartTop').onclick=()=>{renderCart();showView('cartView');};$('cartContinue').onclick=()=>showView('homeView');$('backHome').onclick=()=>showView('homeView');$('checkoutCancel').onclick=()=>{renderCart();showView('cartView');};
+ $('authForm').onsubmit=e=>{e.preventDefault();authAction('login');};$('signupBtn').onclick=()=>authAction('signup');$('magicBtn').onclick=()=>authAction('magic');
+ $('logoutBtn').onclick=async()=>{if(db)await db.auth.signOut();currentUser=null;setAuthButton();showView('homeView');status('You have been signed out.','ok');};
+ $('myOrdersBtn').onclick=async()=>{showView('ordersView');await loadOrders();};$('ordersBack').onclick=()=>showView('accountView');$('refreshAccount').onclick=()=>renderAccount();
+ $('sellerBtn').onclick=async()=>{showView('sellerView');await loadSellerProducts();};$('sellerBack').onclick=()=>showView('accountView');$('sellHero').onclick=()=>{if(!currentUser){showView('authView');status('Log in with an account that has an approved seller profile.','error');}else{showView('sellerView');loadSellerProducts();}};
+ $('sellerForm').onsubmit=sellerSubmit;$('checkoutForm').onsubmit=placeOrder;
+ $('voiceBtn').onclick=()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){status('Voice search is not supported by this browser. You can type in the search box.','error');return;}const r=new SR();r.lang='en-IN';r.onresult=e=>{$('searchInput').value=e.results[0][0].transcript;renderProducts();};r.onerror=()=>status('Voice search could not start. Please type your search.','error');r.start();};
+ if(SUPABASE_KEY==='PASTE_YOUR_CURRENT_SUPABASE_PUBLISHABLE_KEY_HERE'||!SUPABASE_KEY){status('Setup required: this file needs your current Supabase publishable key. The key must belong to project qysxatboebapmtdyvlei.','error');loadProducts();return;}
+ if(!window.supabase?.createClient){status('Supabase library failed to load. Check your internet connection.','error');return;}
+ try{db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);window.db=db;db.auth.getSession().then(({data})=>{authRefresh(data.session);}).catch(e=>status('Could not check login session: '+e.message,'error'));db.auth.onAuthStateChange((_event,session)=>{authRefresh(session);});loadProducts();}
+ catch(e){status('Supabase setup error: '+e.message,'error');}
+}
+init();
+</script>
+</body>
+</html>
